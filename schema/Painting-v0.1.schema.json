@@ -1,0 +1,233 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://test.test/schema/Painting-v0.1.schema.json",
+  "title": "Painting",
+  "type": "object",
+  "properties": {
+    "Painting inventory number": {
+      "type": "string",
+      "description": "The unique inventory number of the painting",
+      "required": true
+    },
+    "Owner": {
+      "type": "string",
+      "description": "The ID of the Owner (linked to Owner - Institution or Person)",
+      "required": true
+    },
+    "Permanent location": {
+      "type": "string",
+      "description": "The permanent location of the painting if different from the owner"
+    },
+    "Title": {
+      "type": "string",
+      "description": "The title of the painting",
+      "required": true
+    },
+    "Attribution": {
+      "type": "object",
+      "properties": {
+        "Artist": {
+          "type": "string",
+          "description": "The ID of the artist (linked to the Artist model)"
+        },
+        "Confidence Level": {
+          "type": "string",
+          "enum": ["", "probably", "possibly"],
+          "description": "The level of confidence in the attribution"
+        },
+        "Attribution Type": {
+          "type": "string",
+          "enum": [
+            "after",
+            "assistant to",
+            "circle of",
+            "copyist of",
+            "follower of",
+            "imitator of",
+            "manner of",
+            "manufactury of",
+            "pupil of",
+            "school of",
+            "studio of",
+            "style of",
+            "workshop of"
+          ],
+          "description": "The attribution type for the artist"
+        }
+      },
+      "required": ["Artist"]
+    },
+    "Date of production": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "date",
+          "description": "The date of production in YYYY/MM/DD format"
+        },
+        "Confidence Flag": {
+          "type": "string",
+          "enum": ["", "probably", "possibly"],
+          "description": "Confidence in the date of production"
+        },
+        "Date Prefix": {
+          "type": "string",
+          "enum": ["", "about", "after", "before", "early", "mid", "late"],
+          "description": "Prefix to indicate uncertainty in the date"
+        }
+      }
+    },
+    "Height (cm)": {
+      "type": "number",
+      "description": "The height of the painting in cm"
+    },
+    "Width (cm)": {
+      "type": "number",
+      "description": "The width of the painting in cm"
+    },
+    "Support": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["canvas", "wood panel", "paper", "parchment", "metal", "stone"]
+      },
+      "description": "The support(s) used in the painting",
+      "minItems": 1
+    },
+    "Binding medium": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["oil", "tempera", "watercolour", "acrylic", "gouache", "fresco"]
+      },
+      "description": "The binding medium(s) used in the painting",
+      "minItems": 1
+    },
+    "Painting school": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "The painting school(s) the painting is associated with",
+      "minItems": 1
+    },
+    "Location of production": {
+      "type": "object",
+      "properties": {
+        "City": {
+          "type": "string",
+          "description": "The city where the painting was produced"
+        },
+        "Country": {
+          "type": "string",
+          "description": "The country where the painting was produced"
+        },
+        "Confidence Flag": {
+          "type": "string",
+          "enum": ["", "probably", "possibly"],
+          "description": "Confidence in the location of production"
+        }
+      },
+      "required": ["City", "Country"]
+    },
+    "Preparation classification": {
+      "type": "string",
+      "enum": [
+        "White and off-white",
+        "Tinted (light to mid-tone)",
+        "Coloured (mid-tone to dark)",
+        "double preparation",
+        "white with lead-tin yellow"
+      ],
+      "description": "The preparation classification of the painting"
+    },
+    "Preparation colour lightness descriptor": {
+      "type": "string",
+      "enum": ["dark", "light", "mid"],
+      "description": "The lightness of the preparation colour"
+    },
+    "Preparation colour modifier": {
+      "type": "string",
+      "enum": [
+        "brownish",
+        "cool",
+        "greyish",
+        "orange",
+        "pinkish",
+        "reddish",
+        "warm",
+        "yellowish",
+        "greenish"
+      ],
+      "description": "The modifier for the preparation colour"
+    },
+    "Main preparation colour": {
+      "type": "string",
+      "enum": [
+        "black",
+        "brown",
+        "grey",
+        "off-white",
+        "pink",
+        "red",
+        "white",
+        "yellow",
+        "green"
+      ],
+      "description": "The main colour used in the preparation layer"
+    },
+    "Preparation comment": {
+      "type": "string",
+      "description": "Additional comments or notes about the preparation"
+    },
+    "Painting comments": {
+      "type": "string",
+      "description": "General comments about the painting"
+    },
+    "Painting creditline": {
+      "type": "string",
+      "description": "The creditline information for the painting"
+    },
+    "References": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Related references, usually links (URLs)"
+    },
+    "Reports": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Related reports, usually links (URLs)"
+    },
+    "Has thumbnail": {
+      "type": "object",
+      "properties": {
+        "Image digital object ID": {
+          "type": "string",
+          "description": "ID of the image, defined as a separate digital object in Cordra"
+        },
+        "IIIF Thumbnail URL": {
+          "type": "string",
+          "format": "uri",
+          "description": "A full IIIF URL pointing to a 250px thumbnail representation of the linked image"
+        }
+      },
+      "description": "Link to a thumbnail representation of the painting, including a link to the image object and a IIIF thumbnail URL"
+    }
+  },
+  "required": [
+    "Painting inventory number",
+    "Owner",
+    "Title",
+    "Attribution",
+    "Date of production",
+    "Support",
+    "Binding medium",
+    "Location of production"
+  ]
+}

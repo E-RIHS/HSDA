@@ -1,0 +1,153 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://test.test/schema/Image-v0.1.schema.json",
+  "title": "Image",
+  "type": "object",
+  "properties": {
+    "Image Type": {
+      "type": "string",
+      "enum": ["painting", "sample"],
+      "description": "Defines whether the image is of a painting or a sample",
+      "required": true
+    },
+    "Thing ID": {
+      "type": "string",
+      "description": "The ID of the thing (Painting or Sample) that the image relates to",
+      "required": true
+    },
+    "Image file name": {
+      "type": "string",
+      "description": "The file name of the image",
+      "required": true
+    },
+    "Image file date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the image file was created (format: YYYY/MM/DD)",
+      "required": true
+    },
+    "Image caption": {
+      "type": "string",
+      "description": "A caption describing the image",
+      "required": true
+    },
+    "Imaging protocol name": {
+      "type": "string",
+      "description": "The ID of the imaging protocol used (linked to Protocol)"
+    },
+    "Image order": {
+      "type": "integer",
+      "description": "The order in which this image appears for the painting or sample, starting from 1"
+    },
+    "Image aspect": {
+      "type": "string",
+      "enum": ["front", "back", "edge", "side", "other"],
+      "description": "The aspect of the painting or sample shown in the image"
+    },
+    "Image type": {
+      "type": "string",
+      "enum": ["detail", "whole"],
+      "description": "The type of image, such as a detail or whole view"
+    },
+    "Image purpose": {
+      "type": "string",
+      "description": "The purpose of the image (free text)"
+    },
+    "Image acquisition technique": {
+      "type": "string",
+      "enum": [
+        "Optical microscopy - visible",
+        "Optical microscopy - ultraviolet",
+        "Optical microscopy - infrared",
+        "SEM-BSE",
+        "SEM-EDX",
+        "X-ray fluorescence (XRF)",
+        "Photomicrograph",
+        "X-ray radiography",
+        "Infrared reflectography",
+        "Ultraviolet fluorescence",
+        "Multispectral imaging",
+        "Hyperspectral imaging"
+      ],
+      "description": "The technique used to acquire the image (common heritage science imaging techniques)"
+    },
+    "Image acquisition carried out by": {
+      "type": "string",
+      "description": "The ID of the person who carried out the image acquisition (linked to Person)"
+    },
+    "Image lightsource": {
+      "type": "string",
+      "enum": ["visible", "infrared", "ultraviolet", "x-ray", "multispectral", "hyperspectral"],
+      "description": "The lighting conditions or source of light used in the image"
+    },
+    "Image specification": {
+      "type": "string",
+      "description": "Additional specification of the image (e.g., reflected light, polarised, dark field, bright field, transmitted light, entity map)"
+    },
+    "Entity mapped": {
+      "type": "string",
+      "description": "Description of the entity or element mapped if the image is a map (e.g., chemical element detected in SEM-EDX elemental map)"
+    },
+    "Image resolution": {
+      "type": "string",
+      "description": "Resolution of the image (pixels per mm)"
+    },
+    "Painting status": {
+      "type": "string",
+      "enum": [
+        "gallery condition",
+        "after cleaning",
+        "after cleaning and restoration",
+        "after cleaning before restoration",
+        "after conservation before restoration",
+        "after relining",
+        "after repairs",
+        "after restoration",
+        "after treatment",
+        "before cleaning",
+        "before relining",
+        "before repairs",
+        "before restoration",
+        "before treatment",
+        "cleaning tests",
+        "during cleaning",
+        "during further cleaning",
+        "during further restoration",
+        "during relining",
+        "during repairs",
+        "during restoration",
+        "during retouching",
+        "during treatment",
+        "preliminary cleaning tests",
+        "other (see description)",
+        "not applicable"
+      ],
+      "description": "The status of the painting or sample at the time the image was taken"
+    },
+    "Image re-use license": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the license governing the reuse of the image"
+    },
+    "Image copyright": {
+      "type": "string",
+      "description": "Copyright information related to the image"
+    },
+    "Image comment": {
+      "type": "string",
+      "description": "Additional comments or notes about the image"
+    },
+    "Image IIIF info URL": {
+      "type": "string",
+      "format": "uri",
+      "description": "The IIIF info URL for the image"
+    }
+  },
+  "required": [
+    "Image Type",
+    "Thing ID",
+    "Image file name",
+    "Image file date",
+    "Image caption"
+  ]
+}

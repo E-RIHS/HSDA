@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://test.test/schema/PaintLayer-v0.1.schema.json",
+  "title": "Paint Layer",
+  "type": "object",
+  "properties": {
+    "Layer ID": {
+      "type": "string",
+      "description": "The unique ID of the paint layer",
+      "required": true
+    },
+    "Painting ID": {
+      "type": "string",
+      "description": "The ID of the painting to which the layer belongs (linked to Painting)",
+      "required": true
+    },
+    "Sample ID": {
+      "type": "string",
+      "description": "The ID of the sample to which the layer belongs (linked to Sample)",
+      "required": true
+    },
+    "Painting layer number": {
+      "type": "string",
+      "description": "The layer number in the painting, in the format P1, P2, etc."
+    },
+    "Sample layer number": {
+      "type": "string",
+      "description": "The layer number in the sample, in the format L1, L2, etc."
+    },
+    "Sample layer function": {
+      "type": "string",
+      "enum": [
+        "support",
+        "ground",
+        "intermediate unpigmented organic layer",
+        "local preparation",
+        "metal leaf",
+        "non original",
+        "overpaint",
+        "paint layer",
+        "preparation",
+        "priming / imprimatura",
+        "underdrawing",
+        "varnish"
+      ],
+      "description": "The function of the sample layer"
+    },
+    "Sample layer colour descriptor": {
+      "type": "string",
+      "enum": ["dark", "light", "mid"],
+      "description": "The lightness descriptor of the sample layer color"
+    },
+    "Sample layer colour modifier": {
+      "type": "string",
+      "enum": [
+        "brownish",
+        "cool",
+        "greyish",
+        "orange",
+        "pinkish",
+        "reddish",
+        "warm",
+        "yellowish",
+        "greenish"
+      ],
+      "description": "The color modifier for the sample layer"
+    },
+    "Main sample layer colour": {
+      "type": "string",
+      "enum": [
+        "black",
+        "blue",
+        "brown",
+        "green",
+        "grey",
+        "off-white",
+        "orange",
+        "pink",
+        "red",
+        "unpigmented",
+        "violet",
+        "white",
+        "yellow",
+        "yellowed"
+      ],
+      "description": "The main color of the sample layer"
+    },
+    "Sample layer thickness (µm)": {
+      "type": "string",
+      "enum": [
+        "less than 0.5",
+        "0.5 - 5",
+        "5 - 10",
+        "10 - 20",
+        "20 - 50",
+        "50 - 100",
+        "100 +"
+      ],
+      "description": "The thickness of the sample layer in micrometers (µm)"
+    },
+    "Sample layer comment": {
+      "type": "string",
+      "description": "Additional comments or notes about the sample layer"
+    }
+  },
+  "required": [
+    "Layer ID",
+    "Painting ID",
+    "Sample ID",
+    "Sample layer function",
+    "Main sample layer colour"
+  ]
+}

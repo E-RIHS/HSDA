@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://test.test/schema/IIIFAnnotation-v0.2.schema.json",
+  "title": "IIIF Annotation",
+  "type": "object",
+  "properties": {
+    "Annotation ID": {
+      "type": "string",
+      "description": "The unique ID of the annotation",
+      "required": true
+    },
+    "Image ID": {
+      "type": "string",
+      "description": "The ID of the image to which the annotation applies (linked to Image schema)",
+      "required": true
+    },
+    "Motivation": {
+      "type": "string",
+      "enum": [
+        "commenting",
+        "tagging",
+        "describing",
+        "classifying",
+        "highlighting",
+        "linking"
+      ],
+      "description": "The purpose of the annotation, following IIIF standard motivations"
+    },
+    "Target": {
+      "type": "object",
+      "properties": {
+        "Source": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL or identifier of the image being annotated (e.g., IIIF image)"
+        },
+        "Selector": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["FragmentSelector", "SvgSelector", "PointSelector"],
+              "description": "The type of selector being used (e.g., FragmentSelector, SvgSelector, or PointSelector)"
+            },
+            "value": {
+              "type": "string",
+              "description": "The region or point of the image being annotated"
+            }
+          },
+          "required": ["type", "value"]
+        }
+      },
+      "required": ["Source", "Selector"]
+    },
+    "Body": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["TextualBody", "Image", "Video", "Sound"],
+          "description": "The type of body, usually textual but can also be an image, video, or sound"
+        },
+        "value": {
+          "type": "string",
+          "description": "The content of the annotation (e.g., a comment or tag)"
+        },
+        "format": {
+          "type": "string",
+          "description": "The format of the body, such as text/plain or image/jpeg"
+        },
+        "language": {
+          "type": "string",
+          "description": "The language of the text, if applicable"
+        }
+      },
+      "required": ["type", "value"]
+    },
+    "Created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the annotation was created"
+    },
+    "Modified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the annotation was last modified"
+    },
+    "Creator": {
+      "type": "string",
+      "description": "The ID of the person or system that created the annotation"
+    }
+  },
+  "required": [
+    "Annotation ID",
+    "Image ID",
+    "Motivation",
+    "Target",
+    "Body",
+    "Created"
+  ]
+}

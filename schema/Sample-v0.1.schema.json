@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://test.test/schema/Sample-v0.1.schema.json",
+  "title": "Sample",
+  "type": "object",
+  "properties": {
+    "Painting ID": {
+      "type": "string",
+      "description": "The ID of the painting from which the sample was taken",
+      "required": true
+    },
+    "Sample ID": {
+      "type": "string",
+      "description": "The unique ID of the sample",
+      "required": true
+    },
+    "Sample Code": {
+      "type": "string",
+      "description": "The code assigned to the sample"
+    },
+    "Sample taken from": {
+      "type": "string",
+      "enum": ["later addition", "original support"],
+      "description": "Where the sample was taken from, e.g., later addition or original support"
+    },
+    "Sampling location description": {
+      "type": "string",
+      "description": "Description of the location where the sample was taken"
+    },
+    "Sample location comment": {
+      "type": "string",
+      "description": "Additional comments about the sample location"
+    },
+    "Sample type": {
+      "type": "string",
+      "enum": ["cross-section", "unmounted flake"],
+      "description": "The type of sample, such as cross-section or unmounted flake"
+    },
+    "Painting status": {
+      "type": "string",
+      "enum": [
+        "gallery condition",
+        "after cleaning",
+        "after cleaning and restoration",
+        "after cleaning before restoration",
+        "after conservation before restoration",
+        "after relining",
+        "after repairs",
+        "after restoration",
+        "after treatment",
+        "before cleaning",
+        "before relining",
+        "before repairs",
+        "before restoration",
+        "before treatment",
+        "cleaning tests",
+        "during cleaning",
+        "during further cleaning",
+        "during further restoration",
+        "during relining",
+        "during repairs",
+        "during restoration",
+        "during retouching",
+        "during treatment",
+        "preliminary cleaning tests",
+        "other (see description)",
+        "not applicable"
+      ],
+      "description": "The status of the painting at the time of sampling"
+    },
+    "Date of sampling": {
+      "type": "string",
+      "format": "date",
+      "description": "The date when the sample was taken (format: YYYY/MM/DD)"
+    },
+    "Sampling carried out by": {
+      "type": "string",
+      "description": "The ID of the person who carried out the sampling (linked to a Person)"
+    },
+    "Date of sample preparation": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the sample was prepared (format: YYYY/MM/DD)"
+    },
+    "Sample preparation carried out by": {
+      "type": "string",
+      "description": "The ID of the person who carried out the sample preparation (linked to a Person)"
+    },
+    "Sample preparation protocol": {
+      "type": "string",
+      "description": "The ID of the protocol used for sample preparation (linked to a Protocol)"
+    },
+    "Related documents and reports": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Related documents or reports, provided as URLs"
+    },
+    "Sample comment": {
+      "type": "string",
+      "description": "Additional comments or notes about the sample"
+    }
+  },
+  "required": [
+    "Painting ID",
+    "Sample ID",
+    "Sample taken from",
+    "Sample type",
+    "Painting status",
+    "Date of sampling",
+    "Sampling carried out by"
+  ]
+}

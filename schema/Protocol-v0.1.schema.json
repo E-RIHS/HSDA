@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://test.test/schema/Protocol-v0.1.schema.json",
+  "title": "Protocol",
+  "type": "object",
+  "properties": {
+    "Protocol name": {
+      "type": "string",
+      "description": "The name of the protocol",
+      "required": true
+    },
+    "Institution": {
+      "type": "string",
+      "description": "The ID of the Owner-Institution this protocol is associated with",
+      "required": true
+    },
+    "Protocol number": {
+      "type": "integer",
+      "description": "The local integer identifier for the protocol",
+      "required": true
+    },
+    "Protocol type": {
+      "type": "string",
+      "enum": [
+        "imaging protocol",
+        "sample imaging protocol",
+        "sample preparation protocol",
+        "sampling protocol",
+        "analytical protocol"
+      ],
+      "description": "The type of protocol, selected from a predefined list",
+      "required": true
+    },
+    "Analytical technique": {
+      "type": "string",
+      "enum": [
+        "X-ray fluorescence (XRF)",
+        "Fourier-transform infrared spectroscopy (FTIR)",
+        "Raman spectroscopy",
+        "Scanning electron microscopy (SEM)",
+        "Mass spectrometry (MS)",
+        "Optical microscopy",
+        "Gas chromatography (GC)",
+        "High-performance liquid chromatography (HPLC)",
+        "Laser-induced breakdown spectroscopy (LIBS)",
+        "X-ray diffraction (XRD)"
+      ],
+      "description": "The heritage science technique used to examine or analyze paint samples",
+      "required": true
+    },
+    "Protocol date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the protocol was recorded, in YYYY/MM/DD format",
+      "required": true
+    },
+    "Protocol file": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to the protocol file in the 'protocols' folder",
+      "required": true
+    },
+    "Protocol key features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Key features of the protocol, free text, allowing multiple values",
+      "required": true
+    },
+    "Protocol comment": {
+      "type": "string",
+      "description": "Additional comments or notes about the protocol"
+    }
+  },
+  "required": [
+    "Protocol name",
+    "Institution",
+    "Protocol number",
+    "Protocol type",
+    "Analytical technique",
+    "Protocol date",
+    "Protocol file",
+    "Protocol key features"
+  ]
+}

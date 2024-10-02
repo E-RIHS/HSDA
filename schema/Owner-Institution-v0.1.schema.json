@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://test.test/schema/Owner-Institution-v0.1.schema.json",
+  "title": "Owner - Institution",
+  "type": "object",
+  "properties": {
+    "Full name": {
+      "type": "string",
+      "description": "The full name of the owner or institution",
+      "required": true
+    },
+    "Acronym": {
+      "type": "string",
+      "description": "The acronym or short name for the owner or institution"
+    },
+    "Owner - Institution ID": {
+      "type": "string",
+      "description": "Internal database ID for the owner or institution"
+    },
+    "External PID": {
+      "type": "string",
+      "format": "uri",
+      "description": "Optional external PID such as ORCID for people or ROR for institutions"
+    },
+    "Owner - Institution type": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "museum",
+          "gallery",
+          "library",
+          "archive",
+          "research centre"
+        ]
+      },
+      "description": "The type or classification of the owner or institution, can have multiple values"
+    },
+    "Location": {
+      "type": "object",
+      "properties": {
+        "City": {
+          "type": "string",
+          "description": "The city where the owner or institution is located",
+          "required": true
+        },
+        "Country": {
+          "type": "string",
+          "description": "The country where the owner or institution is located",
+          "required": true
+        },
+        "Coordinates": {
+          "type": "object",
+          "properties": {
+            "Latitude": {
+              "type": "number",
+              "description": "Geographical latitude"
+            },
+            "Longitude": {
+              "type": "number",
+              "description": "Geographical longitude"
+            }
+          }
+        }
+      },
+      "required": ["City", "Country"]
+    },
+    "Web page address": {
+      "type": "string",
+      "format": "uri",
+      "description": "The webpage address for the owner or institution"
+    },
+    "Further owner/institution details": {
+      "type": "string",
+      "description": "Additional information about the owner or institution"
+    }
+  },
+  "required": [
+    "Full name",
+    "Owner - Institution ID",
+    "Owner - Institution type",
+    "Location"
+  ]
+}

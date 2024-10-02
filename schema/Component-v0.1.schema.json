@@ -1,0 +1,178 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://test.test/schema/Component-v0.1.schema.json",
+  "title": "Component",
+  "type": "object",
+  "properties": {
+    "Component ID": {
+      "type": "string",
+      "description": "The unique ID of the component",
+      "required": true
+    },
+    "Sample ID": {
+      "type": "string",
+      "description": "The ID of the sample to which the component belongs (linked to Sample)",
+      "required": true
+    },
+    "Layer ID": {
+      "type": "string",
+      "description": "The ID of the layer to which the component belongs (linked to Layer)"
+    },
+    "Component number": {
+      "type": "string",
+      "description": "The component number, in the format C1, C2, etc."
+    },
+    "Parent Component ID": {
+      "type": "string",
+      "description": "The ID of the parent component, if the component is nested within another"
+    },
+    "Component amount": {
+      "type": "string",
+      "enum": ["major", "minor", "occasional"],
+      "description": "The amount of the component"
+    },
+    "Component size": {
+      "type": "string",
+      "enum": [
+        "tinted/none",
+        "fine",
+        "fine and medium",
+        "fine and coarse",
+        "medium",
+        "coarse",
+        "coarse and medium",
+        "coarse, medium, and fine"
+      ],
+      "description": "The size of the component particles"
+    },
+    "Component colour descriptor": {
+      "type": "string",
+      "enum": ["dark", "light", "metallic", "mid", "transparent"],
+      "description": "The color descriptor of the component"
+    },
+    "Component colour": {
+      "type": "string",
+      "enum": [
+        "black",
+        "blue",
+        "brown",
+        "colourless",
+        "green",
+        "grey",
+        "off-white",
+        "orange",
+        "red",
+        "violet",
+        "white",
+        "yellow"
+      ],
+      "description": "The color of the component"
+    },
+    "Component composition": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "string",
+          "enum": ["", "probably", "possibly"],
+          "description": "The confidence level of the component identification"
+        },
+        "material": {
+          "type": "string",
+          "enum": [
+            "gypsum",
+            "calcium sulphate",
+            "lead white",
+            "lead-tin yellow",
+            "anhydrite",
+            "walnut oil",
+            "glue",
+            "proteinaceous",
+            "umber",
+            "red earth",
+            "iron oxide",
+            "yellow earth",
+            "vermilion",
+            "brown earth",
+            "charcoal black",
+            "stibnite"
+          ],
+          "description": "The material composition of the component"
+        }
+      },
+      "description": "The composition of the component (confidence level and material)"
+    },
+    "Component type": {
+      "type": "object",
+      "properties": {
+        "confidence": {
+          "type": "string",
+          "enum": ["", "probably", "possibly"],
+          "description": "The confidence level of the component type identification"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "alteration product",
+            "contaminant",
+            "dryer",
+            "extender",
+            "medium",
+            "pigment",
+            "uncertain"
+          ],
+          "description": "The type or function of the component"
+        }
+      },
+      "description": "The interpretation of the component's function (confidence level and type)"
+    },
+    "Analytical method": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "FTIR",
+          "DTMS",
+          "FTIR - ATR",
+          "GCMS",
+          "HPLC",
+          "LCMS",
+          "Microchemical test",
+          "Optical microscopy",
+          "Other",
+          "PLM",
+          "Raman",
+          "SEM - EDX",
+          "SIMS",
+          "Staining test",
+          "XRD",
+          "XRF"
+        ]
+      },
+      "description": "An array of analytical methods used to analyze the component"
+    },
+    "Analytical protocol name": {
+      "type": "string",
+      "description": "The ID of the analytical protocol used (linked to Protocol)"
+    },
+    "Date of analysis": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the analysis was carried out (format: YYYY/MM/DD)"
+    },
+    "Analysis carried out by": {
+      "type": "string",
+      "description": "The ID of the person who carried out the analysis (linked to Person)"
+    },
+    "Component comment": {
+      "type": "string",
+      "description": "Additional comments or notes about the component"
+    }
+  },
+  "required": [
+    "Component ID",
+    "Sample ID",
+    "Component composition",
+    "Component amount",
+    "Component size"
+  ]
+}
