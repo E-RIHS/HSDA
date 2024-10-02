@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$id": "https://test.test/schema/Artist-v0.1.schema.json",
+  "$id": "https://e-rihs.io/HSDA/schema/Artist-v0.1.schema.json",
   "title": "Artist",
   "type": "object",
   "properties": {

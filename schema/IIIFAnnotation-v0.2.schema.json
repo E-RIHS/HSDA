@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$id": "https://test.test/schema/IIIFAnnotation-v0.2.schema.json",
+  "$id": "https://e-rihs.io/HSDA/schema/IIIFAnnotation-v0.2.schema.json",
   "title": "IIIF Annotation",
   "type": "object",
   "properties": {

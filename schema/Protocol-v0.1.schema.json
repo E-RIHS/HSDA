@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$id": "https://test.test/schema/Protocol-v0.1.schema.json",
+  "$id": "https://e-rihs.io/HSDA/schema/Protocol-v0.1.schema.json",
   "title": "Protocol",
   "type": "object",
   "properties": {

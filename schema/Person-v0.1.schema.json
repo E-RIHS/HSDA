@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$id": "https://test.test/schema/Person-v0.1.schema.json",
+  "$id": "https://e-rihs.io/HSDA/schema/Person-v0.1.schema.json",
   "title": "Person",
   "type": "object",
   "properties": {
