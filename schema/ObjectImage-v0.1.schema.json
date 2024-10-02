@@ -1,18 +1,18 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "$id": "https://test.test/schema/Image-v0.1.schema.json",
+  "$id": "https://test.test/schema/ObjectImage-v0.1.schema.json",
   "title": "Image",
   "type": "object",
   "properties": {
     "Image Type": {
       "type": "string",
-      "enum": ["painting", "sample"],
-      "description": "Defines whether the image is of a painting or a sample",
+      "enum": ["painting", "sample", "other"],
+      "description": "Probably remove as this should be pulled from the thing record??? Defines whether the image is of a painting or a sample",
       "required": true
     },
     "Thing ID": {
       "type": "string",
-      "description": "The ID of the thing (Painting or Sample) that the image relates to",
+      "description": "The ID of the object (painting, sample, etc) that the image relates to",
       "required": true
     },
     "Image file name": {
@@ -37,12 +37,12 @@
     },
     "Image order": {
       "type": "integer",
-      "description": "The order in which this image appears for the painting or sample, starting from 1"
+      "description": "The order in which this image appears for the object (painting, sample, etc), starting from 1"
     },
     "Image aspect": {
       "type": "string",
       "enum": ["front", "back", "edge", "side", "other"],
-      "description": "The aspect of the painting or sample shown in the image"
+      "description": "The aspect of the object (painting, sample, etc) shown in the image"
     },
     "Image type": {
       "type": "string",
@@ -92,7 +92,7 @@
       "type": "string",
       "description": "Resolution of the image (pixels per mm)"
     },
-    "Painting status": {
+    "Object status": {
       "type": "string",
       "enum": [
         "gallery condition",
@@ -122,7 +122,7 @@
         "other (see description)",
         "not applicable"
       ],
-      "description": "The status of the painting or sample at the time the image was taken"
+      "description": "The status of the object (painting, sample, etc) at the time the image was taken"
     },
     "Image re-use license": {
       "type": "string",
