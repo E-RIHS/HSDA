@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://test.test/schema/ActorImage-v0.1.schema.json",
+  "title": "Actor Image",
+  "type": "object",
+  "properties": {
+    "Actor ID": {
+      "type": "string",
+      "description": "The ID of the actor (person, insitution, etc) that the image relates to",
+      "required": true
+    },
+    "Image file name": {
+      "type": "string",
+      "description": "The file name of the image",
+      "required": true
+    },
+    "Image file date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date the image file was created (format: YYYY/MM/DD)",
+      "required": true
+    },
+    "Image caption": {
+      "type": "string",
+      "description": "A caption describing the image",
+      "required": true
+    },
+    "Image order": {
+      "type": "integer",
+      "description": "The order in which this image appears for the object (painting, sample, etc), starting from 1"
+    },
+    "Image purpose": {
+      "type": "string",
+      "description": "The purpose of the image (free text)"
+    },
+    "Image acquisition carried out by": {
+      "type": "string",
+      "description": "The ID of the person who carried out the image acquisition (linked to Person)"
+    },
+    "Image resolution": {
+      "type": "string",
+      "description": "Resolution of the image (pixels per mm)"
+    },
+    "Image re-use license": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the license governing the reuse of the image"
+    },
+    "Image copyright": {
+      "type": "string",
+      "description": "Copyright information related to the image"
+    },
+    "Image comment": {
+      "type": "string",
+      "description": "Additional comments or notes about the image"
+    },
+    "Image IIIF info URL": {
+      "type": "string",
+      "format": "uri",
+      "description": "The IIIF info URL for the image"
+    }
+  },
+  "required": [
+    "Actor ID",
+    "Image file name",
+    "Image file date",
+    "Image caption"
+  ]
+}
