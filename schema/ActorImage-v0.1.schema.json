@@ -44,7 +44,7 @@
     "Image re-use licence": {
       "type": "string",
       "format": "uri",
-      "description": "The URL of the license governing the reuse of the image"
+      "description": "The URL of the licence governing the reuse of the image"
     },
     "Image copyright": {
       "type": "string",
