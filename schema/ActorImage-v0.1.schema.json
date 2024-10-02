@@ -41,7 +41,7 @@
       "type": "string",
       "description": "Resolution of the image (pixels per mm)"
     },
-    "Image re-use license": {
+    "Image re-use licence": {
       "type": "string",
       "format": "uri",
       "description": "The URL of the license governing the reuse of the image"
