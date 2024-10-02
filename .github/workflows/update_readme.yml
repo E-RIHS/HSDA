@@ -1,0 +1,74 @@
+name: Update README with Schema Info
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install jq (JSON parser)
+      run: sudo apt-get install jq
+
+    - name: List and Process Schema Files
+      run: |
+        # Find all schema files and extract relevant info
+        SCHEMA_DIR="schema"
+        README_SECTION="## Metadata Schemas"
+        
+        echo "$README_SECTION" > new_readme_section.md
+        
+        # Get all schema files grouped by name
+        ls $SCHEMA_DIR/*.json | sed 's/.*\/\(.*\)-v[0-9]\+\.[0-9]\+\.schema\.json/\1/' | sort | uniq | while read NAME; do
+          # Get schema files sorted by version number (descending)
+          FILES=$(ls $SCHEMA_DIR/$NAME-v*.json | sort -r)
+          
+          # Get the latest version file
+          LATEST_FILE=$(echo "$FILES" | head -n 1)
+
+          # Extract details from the latest version file
+          TITLE=$(jq -r '.title' $LATEST_FILE)
+          DESCRIPTION=$(jq -r '.description // empty' $LATEST_FILE)
+          ID=$(jq -r '.$id' $LATEST_FILE)
+          VERSION=$(echo "$LATEST_FILE" | grep -oP '(?<=v)[0-9]+\.[0-9]+')
+
+          # Write the section header for this schema
+          echo "### \"$TITLE\" metadata schema" >> new_readme_section.md
+          if [ ! -z "$DESCRIPTION" ]; then
+            echo "" >> new_readme_section.md
+            echo "$DESCRIPTION" >> new_readme_section.md
+          fi
+
+          echo "" >> new_readme_section.md
+          echo "Current version: v$VERSION [[JSON]]($ID) [[Diagram]](https://research.ng-london.org.uk/modelling-dev/?url=$ID)" >> new_readme_section.md
+
+          # List older versions
+          echo "Older versions:" >> new_readme_section.md
+          echo "$FILES" | tail -n +2 | while read FILE; do
+            VERSION=$(echo "$FILE" | grep -oP '(?<=v)[0-9]+\.[0-9]+')
+            ID=$(jq -r '.$id' $FILE)
+            echo "* v$VERSION [[JSON]]($ID) [[Diagram]](https://research.ng-london.org.uk/modelling-dev/?url=$ID)" >> new_readme_section.md
+          done
+          echo "" >> new_readme_section.md
+        done
+
+    - name: Update README.md
+      run: |
+        # Insert the new schema info into README.md
+        sed -i '/## Metadata Schemas/,$d' README.md
+        cat new_readme_section.md >> README.md
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add README.md
+        git commit -m "Update README with latest schema information"
+        git push
