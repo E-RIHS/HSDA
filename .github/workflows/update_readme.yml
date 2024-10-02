@@ -45,7 +45,7 @@ jobs:
           # Extract details from the latest version file
           TITLE=$(npx jq -r '.title' $LATEST_FILE)
           DESCRIPTION=$(npx jq -r '.description // empty' $LATEST_FILE)
-          ID=$(npx jq -r '.$id' $LATEST_FILE)
+          ID=$(npx jq -r '."$id"' $LATEST_FILE)
           VERSION=$(echo "$LATEST_FILE" | grep -oP '(?<=v)[0-9]+\.[0-9]+')
 
           # Write the section header for this schema
@@ -62,7 +62,7 @@ jobs:
           echo "Older versions:" >> new_readme_section.md
           echo "$FILES" | tail -n +2 | while read FILE; do
             VERSION=$(echo "$FILE" | grep -oP '(?<=v)[0-9]+\.[0-9]+')
-            ID=$(npx jq -r '.$id' $FILE)
+            ID=$(npx jq -r '."$id"' $FILE)
             echo "* v$VERSION [[JSON]]($ID) [[Diagram]](https://research.ng-london.org.uk/modelling-dev/?url=$ID)" >> new_readme_section.md
           done
           echo "" >> new_readme_section.md
