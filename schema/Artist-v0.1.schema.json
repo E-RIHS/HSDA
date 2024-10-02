@@ -1,0 +1,190 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$id": "https://test.test/schema/Artist-v0.1.schema.json",
+  "title": "Artist",
+  "type": "object",
+  "properties": {
+    "Artist Name": {
+      "type": "string",
+      "description": "The official name of the artist",
+      "required": true
+    },
+    "Artist Display Name": {
+      "type": "string",
+      "description": "The display name of the artist",
+      "required": true
+    },
+    "Alternative Names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Alternative names or aliases for the artist"
+    },
+    "Place of Birth": {
+      "type": "object",
+      "properties": {
+        "Location": {
+          "type": "string",
+          "description": "The location where the artist was born"
+        },
+        "Confidence Flag": {
+          "type": "string",
+          "enum": ["", "probably", "possibly"],
+          "description": "Confidence in the place of birth"
+        }
+      }
+    },
+    "Place of Death": {
+      "type": "object",
+      "properties": {
+        "Location": {
+          "type": "string",
+          "description": "The location where the artist died"
+        },
+        "Confidence Flag": {
+          "type": "string",
+          "enum": ["", "probably", "possibly"],
+          "description": "Confidence in the place of death"
+        }
+      }
+    },
+    "Life Span": {
+      "type": "object",
+      "properties": {
+        "Birth Date": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "format": "date",
+              "description": "Birth date of the artist"
+            },
+            "Confidence Flag": {
+              "type": "string",
+              "enum": ["", "probably", "possibly"],
+              "description": "Confidence in the birth date"
+            },
+            "Date Prefix": {
+              "type": "string",
+              "enum": ["", "about", "after", "before", "early", "mid", "late"],
+              "description": "Prefix to indicate uncertainty in the date"
+            }
+          }
+        },
+        "Death Date": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "format": "date",
+              "description": "Death date of the artist"
+            },
+            "Confidence Flag": {
+              "type": "string",
+              "enum": ["", "probably", "possibly"]
+            },
+            "Date Prefix": {
+              "type": "string",
+              "enum": ["", "about", "after", "before", "early", "mid", "late"]
+            }
+          }
+        }
+      }
+    },
+    "Activity Span": {
+      "type": "object",
+      "properties": {
+        "Activity Start": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "format": "date",
+              "description": "Start of artist's activity period"
+            },
+            "Confidence Flag": {
+              "type": "string",
+              "enum": ["", "probably", "possibly"]
+            },
+            "Date Prefix": {
+              "type": "string",
+              "enum": ["", "about", "after", "before", "early", "mid", "late"]
+            }
+          }
+        },
+        "Activity End": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string",
+              "format": "date",
+              "description": "End of artist's activity period"
+            },
+            "Confidence Flag": {
+              "type": "string",
+              "enum": ["", "probably", "possibly"]
+            },
+            "Date Prefix": {
+              "type": "string",
+              "enum": ["", "about", "after", "before", "early", "mid", "late"]
+            }
+          }
+        }
+      }
+    },
+    "worked in Location": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "The location(s) where the artist worked"
+      },
+      "minItems": 1
+    },
+    "Textual Note": {
+      "type": "string",
+      "description": "Additional textual information about the artist"
+    },
+    "Artist Image": {
+      "type": "object",
+      "properties": {
+        "Artist Image URL": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the artist's image",
+          "required": true
+        },
+        "Image Caption": {
+          "type": "string",
+          "description": "Caption for the artist's image",
+          "required": true
+        },
+        "Reuse Licence": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for the image reuse licence",
+          "required": true
+        },
+        "Copyright Statement": {
+          "type": "string",
+          "description": "Statement about copyright"
+        },
+        "Image Source": {
+          "type": "string",
+          "description": "Source of the image"
+        }
+      },
+      "required": ["Artist Image URL", "Image Caption", "Reuse Licence"]
+    }
+  },
+  "required": [
+    "Artist Name",
+    "Artist Display Name",
+    "Place of Birth",
+    "Place of Death",
+    "Life Span",
+    "Activity Span",
+    "worked in Location",
+    "Artist Image"
+  ]
+}
