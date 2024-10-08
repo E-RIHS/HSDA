@@ -1,11 +1,17 @@
 name: Update README with Schema Info
 
+#on:
+#  push:
+#    branches:
+#      - main
+#  schedule:
+#    - cron: '0 0 * * *'  # Runs daily
+
 on:
   push:
-    branches:
+    branches: 
       - main
-  schedule:
-    - cron: '0 0 * * *'  # Runs daily
+    paths: ['*.json']
 
 jobs:
   update-readme:
