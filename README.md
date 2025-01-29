@@ -1,3 +1,37 @@
+# Heritage Sample Digital Archive (HSDA)
+## Overview
+The Heritage Sample Digital Archive (HSDA) is an initiative to develop a standard metadata profile for documenting heritage samples and related entities. This metadata framework will support the structured documentation, preservation, and sharing of heritage sample data, enabling greater interoperability and accessibility within the heritage science community.
+
+The repository serves as a foundation for the creation of an open Heritage Sample Digital Archive, ensuring that sample-related data can be systematically recorded, stored, and reused in a FAIR (Findable, Accessible, Interoperable, and Reusable) manner.
+
+## Definition: Heritage Sample
+>[!NOTE]
+> A Heritage Sample is a small, physical, and representative part of a larger heritage object, or a specific section of it, that has been separated or collected for the purpose of examination, analysis, or research within the field of Heritage Science.
+>
+> A heritage sample may still physically exist, or it may have been consumed or destroyed during previous analysis. Regardless of its current state, a heritage sample must have clearly defined provenance, including:
+>* Its connection to the source object.
+>* The date and location from which it was taken.
+>* Ideally, precise positional information regarding its original placement within the object.
+> While heritage samples are typically removed as part of a deliberate sampling event, it is also recognized that samples may become detached through natural processes, accidents, or external forces. In such cases, a detailed record of the event leading to the separation is required, along with a high level of confidence that the sample was originally part of the object.
+> To be classified as a heritage sample rather than a generic component or fragment, it must have been collected, retained, or used specifically for examination or analysis. A sample may serve multiple research purposes and contribute to answering a range of scientific or historical questions.
+> While the association of researchers, scientists, and other specialists with a heritage sample record is valuable, their involvement is not a requirement for the fundamental definition of a heritage sample.
+
+## Project Goals
+* Develop a standard metadata profile for heritage samples and related entities.
+* Align metadata standards with FAIR principles to ensure interoperability.
+* Support integration with existing heritage science and cultural heritage data infrastructures.
+* Establish the groundwork for an open digital archive dedicated to heritage sample data.
+
+## Metadata Model
+The metadata model will be structured to include:
+* Sample identification and provenance tracking.
+* Scientific analysis and examination metadata.
+* Relationships between samples, source objects, and researchers.
+* Data interoperability with existing heritage and scientific repositories.
+
+## Contributing
+[TBC] Contributions to this repository are welcome! Please refer to the CONTRIBUTING.md file for guidelines on submitting issues, suggestions, or pull requests.
+
 ## Acknowledgement
 This project was setup as part of the work of the following project:
 
@@ -15,3 +49,6 @@ This project continues to be developed and tested with support from the followin
 ### The [UKRI RICHeS](https://www.riches.ukri.org/) [HSDS](https://hsds.ac.uk/) project
 [<img height="64px" src="https://hsds.ac.uk/img/HSDS_Blue-and-Black.png" alt="HSDS Logo">](https://hsds.ac.uk/)<br/>
 * [HSDS is a project funded by UK Research and Innovation (UKRI) as part of the RICHeS Programme.](https://www.riches.ukri.org/)
+
+## License
+(Specify the repository’s license, e.g., MIT, CC-BY, etc.)
