@@ -6,7 +6,7 @@
   "properties": {
     "Actor ID": {
       "type": "string",
-      "description": "The ID of the actor (person, insitution, etc) that the image relates to",
+      "description": "The ID of the actor (person, insitution, etc.) that the image relates to",
       "required": true
     },
     "Image file name": {
