@@ -1,20 +1,13 @@
-name: Update README with Schema Info
-
-#on:
-#  push:
-#    branches:
-#      - main
-#  schedule:
-#    - cron: '0 0 * * *'  # Runs daily
+name: Update Schema README
 
 on:
   push:
     branches: 
       - main
-    paths: ['*.json']
+    paths: ['schema/*.json']
 
 jobs:
-  update-readme:
+  update-schema-readme:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,8 +27,9 @@ jobs:
         # Ensure jq is installed as a Node.js wrapper
         npx jq --version
         
-        # Find all schema files and extract relevant info
+        # Define schema directory and README location
         SCHEMA_DIR="schema"
+        README_FILE="$SCHEMA_DIR/README.md"
         README_SECTION="## Metadata Schemas"
         
         echo "$README_SECTION" > new_readme_section.md
@@ -74,16 +68,19 @@ jobs:
           echo "" >> new_readme_section.md
         done
 
-    - name: Update README.md
+    - name: Update schema/README.md
       run: |
-        # Insert the new schema info into README.md
-        sed -i '/## Metadata Schemas/,$d' README.md
-        cat new_readme_section.md >> README.md
+        # Ensure the schema folder README exists
+        touch $SCHEMA_DIR/README.md
+        
+        # Insert the new schema info into schema/README.md
+        sed -i '/## Metadata Schemas/,$d' $SCHEMA_DIR/README.md
+        cat new_readme_section.md >> $SCHEMA_DIR/README.md
 
     - name: Commit and push changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add README.md
-        git commit -m "Update README with latest schema information"
+        git add schema/README.md
+        git commit -m "Update schema/README.md with latest schema information"
         git push
