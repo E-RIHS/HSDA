@@ -70,12 +70,17 @@ jobs:
 
     - name: Update schema/README.md
       run: |
+        # Define schema directory
+        SCHEMA_DIR="schema"
+        README_FILE="$SCHEMA_DIR/README.md"
+
         # Ensure the schema folder README exists
-        touch $SCHEMA_DIR/README.md
+        mkdir -p $SCHEMA_DIR
+        touch $README_FILE
         
         # Insert the new schema info into schema/README.md
-        sed -i '/## Metadata Schemas/,$d' $SCHEMA_DIR/README.md
-        cat new_readme_section.md >> $SCHEMA_DIR/README.md
+        sed -i '/## Metadata Schemas/,$d' $README_FILE
+        cat new_readme_section.md >> $README_FILE
 
     - name: Commit and push changes
       run: |
