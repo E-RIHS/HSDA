@@ -33,8 +33,11 @@ The metadata model will be structured to include:
 * Data interoperability with existing heritage and scientific repositories.
 
 ## Contributing
-[TBC] Contributions to this repository are welcome! Please refer to the CONTRIBUTING.md file for guidelines on submitting issues, suggestions, or pull requests.
+We welcome contributions to this repository! If you have an idea, suggestion, or would like to discuss a potential addition, please start by submitting an issue. This allows for open discussion and collaboration before making any formal changes.
 
+Check the existing issues to see if a similar topic has been raised, and feel free to join the conversation. Once discussions progress, contributions can be submitted via pull requests.
+
+Thank you for helping improve this project!
 ## Acknowledgement
 This project was setup as part of the work of the following project:
 
