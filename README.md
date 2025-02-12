@@ -53,7 +53,7 @@ This project continues to be developed and tested with support from the followin
 * [ECHOES is a project funded by UK Research and Innovation (UKRI) under the UK government’s Horizon Europe funding guarantee n.10110142 & n.10110466.]()
 
 ### The [UKRI RICHeS](https://www.riches.ukri.org/) [HSDS](https://hsds.ac.uk/) project
-[<img height="64px" src="https://hsds.ac.uk/img/HSDS_Blue-and-Black.png" alt="HSDS Logo">](https://hsds.ac.uk/)<br/>
+[<img height="64px" src="https://hsds.ac.uk/wp-content/uploads/2024/09/HSDS_Blue-and-black_1920px.png" alt="HSDS Logo">](https://hsds.ac.uk/)<br/>
 * [HSDS is a project funded by UK Research and Innovation (UKRI) as part of the RICHeS Programme.](https://www.riches.ukri.org/)
 
 ## License
