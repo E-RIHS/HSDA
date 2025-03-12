@@ -1,0 +1,45 @@
+//Flowchart LR
+
+Project	has (0-n)	Research activity	event|event
+Project	has linked (0-n)	Dossier	|crm
+
+Dossier	has (0-n)	Research activity	crm|event
+Dossier	references to (0-n)	Object	crm|crm
+Object	references to (0-n)	Photo	crm|crm
+Object	is created by (0 -n)	Actor	crm|crm
+
+Research activity	has (0-n)	Correspondence	|place
+Research activity	has (0-n)	Quotation	|place
+Research activity	has (0-n)	Order	|place
+Research activity	has (0-n)	Invoice	|place
+Research activity	is governed by (0-1)	Convention	|place
+Research activity	has (0-n)	Resource	|place
+
+Correspondence	has (0-n)	Data package (Correspondence)	|actor_bn
+Quotation	has (0-n)	Data package (Quotation)	|actor_bn
+Order	has (0-n)	Data package (Order)	|actor_bn
+Invoice	has (0-n)	Data package (Invoice)	|actor_bn
+Resource	has (0-n)	Data package (Resource)	|actor_bn
+
+Research activity	has (0-n)	Action photo collection	|event
+Research activity	has (0-n)	Sampling event	|event
+Sampling event	has (0-n)	Sample	|event
+Research activity	has (0-n)	Raman et al.	|event
+Raman et al.	is done on (0-1?)	Sample
+Raman et al.	has (0-n)	Data package (Raman et al.)	|actor_bn
+Research activity	has (0-n)	Report	|event
+Report	has (0-n)	Data package (Report)	|actor_bn
+
+Research activity	has (0-1)	Data package (compound archive)	|actor_bn
+
+Research activity	is created by (1-n)	Actor
+
+Raman et al.	results in (0 to n)	Image	|event
+Raman et al.	results in (0 to n)	LPT Data package	|object_bn
+
+Action photo collection	contains (1 to n)	Image
+Sample	is documented in (0 to n)	Image
+
+Image	has (0 to n)	Annotation	|event
+Image	has (0-n)	Data package (Image)	|actor_bn
+Photo	has (0 to n)	Annotation
