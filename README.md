@@ -56,5 +56,9 @@ This project continues to be developed and tested with support from the followin
 [<img height="64px" src="https://hsds.ac.uk/wp-content/uploads/2024/09/HSDS_Blue-and-black_1920px.png" alt="HSDS Logo">](https://hsds.ac.uk/)<br/>
 * [HSDS is a project funded by UK Research and Innovation (UKRI) as part of the RICHeS Programme.](https://www.riches.ukri.org/)
 
+### The [H-SEARCH](https://rdm.kikirpa.be/projects/h-search/) project
+[<img height="64px" src="https://rdm.kikirpa.be/wp-content/uploads/2025/01/H-SEARCH-colour-logo.png" alt="H-SEARCH Logo">](https://rdm.kikirpa.be/projects/h-search/)<br/>
+* [H-SEARCH is a project funded by the Belgian Science Policy Office (BELSPO) as part of the IMPULS INFRA Programme, grant number IM/RT/23/H-SEARCH.](https://www.belspo.be/)
+
 ## License
 (Specify the repository’s license, e.g., MIT, CC-BY, etc.)
