@@ -1,0 +1,25 @@
+//Flowchart LR
+
+Heritage Sample	has source	Heritage Object
+Heritage Sample	depicted in	Images
+Heritage Sample	has previous location	Sample Site	|place
+Heritage Sample	has part	Sample Component
+Sample Component	has part	Sample Component
+Sample Site	depicted in	Images
+Sample Site	is located on	Heritage Object
+Sample Site	is defined by	Annotation
+Sample Site	has note	Needs metadata to note type of locations, tags categories etc.
+Heritage Sample	was created in	Sampling Event	|event
+Sampling Event	has participant	Actor	|actor
+Sampling Event	has purpose	Reason	|idea
+Heritage Sample	was examined in	Analysis Examination	|event
+Sampling Event	follows	Sampling Protocol	|document
+Analysis Examination	follows	Analysis Examination Protocol	|document
+Analysis Examination	creates	Images
+Images	are interpreted in	Reports	|document
+Areas of Interest	are defined by	Annotations
+Annotations	are related to	Images	
+Areas of Interest	are part of	Heritage Sample
+Areas of Interest	are part of	Heritage Object
+Sampling Event	is part of	Broader Event	|event
+Analysis Examination	is part of	Broader Event	|event
