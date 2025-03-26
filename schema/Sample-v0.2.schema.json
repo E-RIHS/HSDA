@@ -1,0 +1,150 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "$id": "https://e-rihs.io/HSDA/schema/Sample-v0.2.schema.json",
+    "title": "Sample",
+    "type": "object",
+    "required": [
+        "sample_id",
+        "sample_label",
+        "sample_description",
+        "collection_id"
+    ],
+    "properties": {
+        "sample_id": {
+            "title": "Sample ID",
+            "type": "string",
+            "description": "The unique ID of the sample"
+        },
+        "sample_label": {
+            "title": "Sample Label",
+            "type": "string",
+            "description": "The name, code or label assigned to the sample"
+        },
+        "sample_description": {
+            "title": "Sample Description",
+            "type": "string",
+            "description": "A description of the sample"
+        },
+        "purpose": {
+            "title": "Purpose",
+            "type": "string",
+            "description": "The purpose of sampling"
+        },
+        "collection_id": {
+            "title": "Collection ID",
+            "type": "string",
+            "description": "The current location of the sample",
+            "format": "uri"
+        },
+        "sample_source": {
+            "title": "Sample Source",
+            "type": "object",
+            "description": "The source of the sample",
+            "required": [
+                "source_id",
+                "source_type",
+                "sampling_location_description"
+            ],
+            "properties": {
+                "source_id": {
+                    "title": "Source ID",
+                    "type": "string",
+                    "description": "The ID of the heritage object from which the sample was taken",
+                    "format": "uri"
+                },
+                "source_type": {    
+                    "title": "Source Type",
+                    "type": "string",
+                    "description": "The type of heritage object from which the sample was taken",
+                    "enum": ["painting", "sculpture", "book"]
+                },
+                "sample_site_description": {
+                    "title": "Sample Site Description",
+                    "type": "string",
+                    "description": "A description of the location of the sample on the source object"
+                },
+                "sample_site_annotations": {
+                    "title": "Sample Site Annotations",
+                    "type": "array",
+                    "items": {
+                        "title": "Sample Site Annotation ID",
+                        "type": "string",
+                        "description": "The ID of the annotation of the sampling location on the source object. The annotation is referencing a position on an image or map of the source.",
+                        "format": "uri"      
+                    }
+                }
+            }
+        },
+        "sample_materials": {
+            "title": "Sample Materials",
+            "type": "array",
+            "items": {
+                "title": "Sample Material",
+                "type": "string",
+                "enum": ["oil", "tempera", "watercolour", "acrylic", "gouache", "ink", "graphite", "pencil", "charcoal", "pastel", "other"]
+            }
+        },
+        "sampling_event_id": {
+            "title": "Sampling Event ID",
+            "type": "string",
+            "description": "The ID of the event of sampling the sample",
+            "format": "uri"
+        },
+        "sample_status": {
+            "title": "Sample Status",
+            "type": "array",
+            "description": "The overall status of the sample, described at a consequtive list of statuses and events in time",
+            "items": {
+                "title": "Sample Status",
+                "description": "The status of the sample at a given time",
+                "type": "object",
+                "required": [
+                    "status",
+                    "date"
+                ],
+                "properties": {
+                    "status": {
+                        "title": "Status",
+                        "description": "The status of the sample at a given time",
+                        "type": "string",
+                        "enum": ["mounted", "unmounted", "polished", "unpolished", "stained", "in solution"]
+                    },
+                    "date": {
+                        "title": "Date",
+                        "description": "The date and time of the sampling event, in ISO 8601 format",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "date_precision": {
+                        "title": "Date Precision",
+                        "description": "The precision of the date, as defined in https://www.wikidata.org/wiki/Help:Dates",
+                        "type": "string",
+                        "enum": [
+                            "0 - billion years",
+                            "1 - hundred million years", 
+                            "2 - ten million years",
+                            "3 - million years  ",
+                            "4 - hundred thousand years",
+                            "5 - ten thousand years",
+                            "6 - thousand years",
+                            "7 - century",
+                            "8 - decade",
+                            "9 - year",
+                            "10 - month",
+                            "11 - day",
+                            "12 - hour",
+                            "13 - minute",
+                            "14 - second"
+                        ]
+                    },
+                    "event_id": {
+                        "title": "Event ID",
+                        "type": "string",
+                        "description": "The ID of the process, modification or treatment of the sample",
+                        "format": "uri"
+                    }   
+                }
+            }
+        }
+    }
+}
