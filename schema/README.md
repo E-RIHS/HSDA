@@ -53,6 +53,7 @@ Older versions:
 
 ### "Sample" metadata schema
 
-Current version: v0.1 [[JSON]](https://e-rihs.io/HSDA/schema/Sample-v0.1.schema.json) [[Diagram]](https://research.ng-london.org.uk/modelling-dev/?url=https://e-rihs.io/HSDA/schema/Sample-v0.1.schema.json)
+Current version: v0.2 [[JSON]](https://e-rihs.io/HSDA/schema/Sample-v0.2.schema.json) [[Diagram]](https://research.ng-london.org.uk/modelling-dev/?url=https://e-rihs.io/HSDA/schema/Sample-v0.2.schema.json)
 Older versions:
+* v0.1 [[JSON]](https://e-rihs.io/HSDA/schema/Sample-v0.1.schema.json) [[Diagram]](https://research.ng-london.org.uk/modelling-dev/?url=https://e-rihs.io/HSDA/schema/Sample-v0.1.schema.json)
 
