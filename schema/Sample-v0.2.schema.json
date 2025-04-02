@@ -1,25 +1,247 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "$id": "https://e-rihs.io/HSDA/schema/Sample-v0.2.schema.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://e-rihs.io/HSDA/schema/Sample-IGSN-v0.2.schema.json",
     "title": "Sample",
     "type": "object",
     "required": [
-        "sample_id",
-        "sample_label",
+        "doi",
+        "creators",
+        "titles",
+        "publisher",
+        "publicationYear",
+        "types",
+
         "sample_description",
         "collection_id"
     ],
     "properties": {
-        "sample_id": {
-            "title": "Sample ID",
-            "type": "string",
-            "description": "The unique ID of the sample"
+        "doi": {
+            "title": "Sample identifier",
+            "description": "The identifier property will be automatically populated with a DOI upon the creation of an IGSN ID. The system will assign a random DOI suffix unless a specific suffix is supplied using Fabrica or DataCite APIs.",
+            "type": "string", 
+            "pattern" : "^10[.][0-9]{4,9}[/][^\\s]+$"
         },
-        "sample_label": {
-            "title": "Sample Label",
-            "type": "string",
-            "description": "The name, code or label assigned to the sample"
+        "creators": {
+            "title": "Sample Creators",
+            "description": "The creator property contains a list of the main researcher(s) involved...in priority order. For IGSN IDs, this could be the sample collector/creator, chief scientist, curator, or even the person who deposited the sample into a repository.",
+            "type": "array",
+            "items": {
+                "title": "Creator",
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "nameType": {
+                        "$ref": "#/definitions/nameType"
+                    },
+                    "givenName": {
+                        "type": "string"
+                    },
+                    "familyName": {
+                        "type": "string"
+                    },
+                    "nameIdentifiers": {
+                        "$ref": "#/definitions/nameIdentifiers"
+                    },
+                    "affiliation": {
+                        "$ref": "#/definitions/affiliation"
+                    },
+                    "lang": {
+                        "type": "string"
+                    }
+                }
+            },
+            "minItems": 1
         },
+        "titles": {
+            "title": "Sample titles or labels",
+            "type": "array",
+            "description": "The title property should include appropriate elements that would help find and distinguish a sample. The exact syntax is at the discretion of the IGSN ID registrant. Appropriate elements might include: The basic form of the object that is registered. For example, polished section, core, pulp, solution, dredge haul in a box, lot, or piece of material; The material or materials that compose the sample. For example, water, granite, or tissue; Local sample identifiers.",
+            "items": {
+                "title": "Sample title",
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "titleType": {
+                        "$ref": "#/definitions/titleType"
+                    },
+                    "lang": {
+                        "type": "string"
+                    }
+                },
+                "required": ["title"]
+            },
+            "minItems": 1,
+            "uniqueItems": true
+        },
+        "publisher": {
+            "title": "Publisher",
+            "description": "The publisher property contains the name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource. For IGSN IDs, this should be the organization registering the IGSN ID for the physical sample.",
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name": {
+                    "type":"string"
+                },
+                "publisherIdentifier": {
+                    "type":"string"
+                },
+                "publisherIdentifierScheme": {
+                    "type":"string"
+                },
+                "schemeUri": {
+                    "type":"string", 
+                "format": "uri"
+                },
+                "lang": {
+                    "type":"string"
+                }
+            },
+            "required": ["name"]
+        },
+        "publicationYear": {
+            "title": "Publication Year",
+            "description": "The publicationYear property should contain the year when the sample was first made available to the research community. This is likely to be the year at the time the physical sample is registered unless the sample was released before registration of its metadata record. The DataCite Metadata Schema provides the following additional guidance for the publicationYear property that is relevant to material samples: If the date of public availability cannot be determined, use the date of registration. If an embargo period has been in effect, use the date when the embargo period ends. If there is no standard publication year value, use the date that would be preferred from a citation perspective.",
+            "type": "string",
+            "pattern": "^[0-9]{4}$"
+        },
+        "types": {
+            "title": "Resource types",
+            "type": "object",
+            "description": "The resourceType property may be populated with resource types from external ontologies or shared vocabularies. In the absence of an agreed vocabulary, the use of the terms “material sample” or “‘feature-of-interest” are strongly recommended to at least distinguish between these sampling concepts. A material sample is a specialization of a larger feature-of-interest, which is typically the collection site. For example, in the Geosciences, a feature-of-interest might be a lake, tree, cross-section, transect, or borehole. ",
+            "additionalProperties": false,
+            "minItems": 1,
+            "required": ["resourceType", "resourceTypeGeneral"],
+            "properties": {
+                "resourceType": {
+                    "title": "Resource Type",
+                    "type": "string",
+                    "enum": [
+                        "Paint Sample",
+                        "Pigment Sample",
+                        "Plaster / Mortar Sample",
+                        "Stone Sample",
+                        "Metal Sample",
+                        "Wood Sample",
+                        "Textile Sample",
+                        "Paper / Parchment Sample",
+                        "Ceramic Sample",
+                        "Glass Sample",
+                        "Organic Material Sample",
+                        "Composite Sample",
+                        "Soil / Sediment Sample",
+                        "Water Sample",
+                        "Biological Sample",
+                        "Dust / Particulate Sample",
+                        "Reference Material",
+                        "Other"
+                      ]
+                },
+                "resourceTypeGeneral": {
+                    "type": "string",
+                    "const": "PhysicalObject"
+                }
+            }
+        },
+
+        "subjects": {
+            "title": "Subjects, Keywords and Classification codes",
+            "description": "The free-text subject property contains the 'subject, keyword, classification code, or key phrase describing the resource.' For IGSN IDs, this is the materials that compose the sample. Since materials may be categorized under different schemata, the sub-properties subjectScheme and schemeURI should also be included whenever possible.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "subject": {
+                        "type": "string"
+                    },
+                    "subjectScheme": {
+                        "type": "string"
+                    },
+                    "schemeUri": {
+                            "type": "string", 
+                        "format": "uri"
+                    },
+                    "valueUri": {
+                            "type": "string", 
+                        "format": "uri"
+                    },
+                    "classificationCode": {
+                            "type": "string"
+                    },
+                    "lang": {
+                            "type": "string"
+                    }
+                },
+                "required": ["subject"]
+            },
+            "uniqueItems": true
+        },
+        "contributors": {
+            "title": "Contributors",
+            "description": "All institutions and people involved in a sample’s workflow—from collection to archival (or discarding/destruction)—may be captured in the free-text contributor property. If contributor is used, the sub-properties contributorName and contributorType are mandatory. ",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": ["contributorType", "name"],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "contributorType": {
+                        "$ref": "#/definitions/contributorType"
+                    },
+                    "nameType": {
+                        "$ref": "#/definitions/nameType"
+                    },
+                    "givenName": {
+                        "type": "string"
+                    },
+                    "familyName": {
+                        "type": "string"
+                    },
+                    "nameIdentifiers": {
+                        "$ref": "#/definitions/nameIdentifiers"
+                    },
+                    "affiliation": {
+                        "$ref": "#/definitions/affiliation"
+                    },
+                    "lang": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "dates": {
+            "title": "Dates",
+            "description": "The date property may be used to log events relevant to the physical object. The date property requires the dateType sub-property, which must be entered from a controlled list. The 'Collected' dateType may be used to record when a sample was collected. At this time, there is no controlled list value for 'Destroyed', which may be pertinent to your material samples metadata. Pending the potential addition of an equivalent value, we advise using a date property with dateType 'Other' and 'Destroyed' in the dateInformation field.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "dateType": {
+                        "$ref": "#/definitions/dateType"
+                    },
+                    "dateInformation": {
+                        "type": "string"
+                    }
+                },
+                "required": ["date", "dateType"]
+            },
+            "uniqueItems": true
+        },
+
+
         "sample_description": {
             "title": "Sample Description",
             "type": "string",
@@ -145,6 +367,95 @@
                     }   
                 }
             }
+        }
+    },
+    "definitions": {
+        "affiliation": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "name": {"type": "string"},
+                    "affiliationIdentifier": {"type": "string"},
+                    "affiliationIdentifierScheme": {"type": "string"},
+                    "schemeUri": {"type": "string", "format": "uri"}
+                },
+                "required": ["name"]
+            },
+            "uniqueItems": true
+        },
+        "contributorType": {
+            "type": "string",
+            "enum": [
+                "ContactPerson",
+                "DataCollector",
+                "DataCurator",
+                "DataManager",
+                "Distributor",
+                "Editor",
+                "HostingInstitution",
+                "Producer",
+                "ProjectLeader",
+                "ProjectManager",
+                "ProjectMember",
+                "RegistrationAgency",
+                "RegistrationAuthority",
+                "RelatedPerson",
+                "Researcher",
+                "ResearchGroup",
+                "RightsHolder",
+                "Sponsor",
+                "Supervisor",
+                "WorkPackageLeader",
+                "Other"
+            ]
+        },
+        "dateType": {
+            "type": "string",
+            "enum": [
+                "Accepted",
+                "Available",
+                "Copyrighted",
+                "Collected",
+                "Created",
+                "Issued",
+                "Submitted",
+                "Updated",
+                "Valid",
+                "Withdrawn",
+                "Other"
+            ]
+        },
+        "nameIdentifiers": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "nameIdentifier": {"type": "string"},
+                    "nameIdentifierScheme": {"type": "string"},
+                    "schemeUri": {"type": "string", "format": "uri"}
+                },
+                "required": ["nameIdentifier", "nameIdentifierScheme"]
+            },
+            "uniqueItems": true
+        },
+        "nameType": {
+            "type": "string",
+            "enum": [
+                "Organizational",
+                "Personal"
+            ]
+        },
+        "titleType": {
+            "type": "string",
+            "enum": [
+                "AlternativeTitle",
+                "Subtitle",
+                "TranslatedTitle",
+                "Other"
+            ]
         }
     }
 }
