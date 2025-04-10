@@ -6,7 +6,7 @@ The repository serves as a foundation for the creation of an open Heritage Sampl
 
 ## Definition: Heritage Sample [DRAFT]
 >[!NOTE]
-> A Heritage Sample is a small, physical, and representative part of a larger heritage object, or a specific section of it, that has been separated or collected for the purpose of examination, analysis, or research within the field of Heritage Science.
+>A Heritage Sample is a small, physical, and representative part of a larger heritage object, or a specific section of it, that has been separated or collected for the purpose of examination, analysis, or research within the field of Heritage Science.
 >
 >A heritage sample may still physically exist, or it may have been consumed or destroyed during previous analysis. Regardless of its current state, a heritage sample must have clearly defined provenance, including:
 >* Its connection to the source object.
@@ -18,6 +18,40 @@ The repository serves as a foundation for the creation of an open Heritage Sampl
 >To be classified as a heritage sample rather than a generic component or fragment, it must have been collected, retained, or used specifically for examination or analysis. A sample may serve multiple research purposes and contribute to answering a range of scientific or historical questions.
 >
 >While the association of researchers, scientists, and other specialists with a heritage sample record is valuable, their involvement is not a requirement for the fundamental definition of a heritage sample.
+>
+>Note that a sample may be taken from a complete object, a defined part or section, or even from a fragment — as long as the sample is clearly documented, and its provenance and purpose are well established.
+
+
+## Definition: Heritage Object [DRAFT]
+>[!NOTE]
+>A Heritage Object is a distinct, identifiable entity of cultural, historical, or scientific significance that exists as a whole or complete thing in its own right, even if it is physically damaged, altered, or partially preserved.
+>
+>A heritage object may be:
+>* Fully physical, such as a painting, manuscript, artefact, or structure.
+>* A record of a previously existing physical item, preserved through documentation, replication, or data.
+>* A virtual or conceptual representation used to describe or model a heritage entity.
+>
+>Regardless of its physical condition, the defining feature of a heritage object is that it is considered a self-contained entity, not merely a part of something larger. However, it is possible that a given Heritage Object could have been or might currently be part of a larger Heritage Object and/or be a member of a larger Group of Heritage Objects, as long as it is still considered to be and referenced as a self-contained entity.
+>
+>Heritage Objects may also contain or be composed of identifiable **Parts** or **Sections**. These are components that were:
+>* Originally designed, defined, created, or formed as distinct and intentional subdivisions of the object (e.g. panels in a polyptych, structural elements of a building, or folios of a manuscript).
+>
+>This differs from a **Heritage Fragment**, which refers to a piece that has become detached through damage or degradation, rather than through intentional design or construction.
+
+## Definition: Heritage Fragment [DRAFT]
+>[!NOTE]
+>A Heritage Fragment is a detached physical part that was originally part of a larger heritage object. A fragment is defined by its incomplete status and direct relationship to a more complete original from which it has become separated.
+>
+>Fragments may:
+>* Vary in size, form, or state of preservation.
+>* Result from natural deterioration, accidental damage, or human activity, rather than from a planned sampling process.
+>* Still carry cultural, historical, or scientific value, especially when their connection to the original object can be established.
+>
+>Unlike a damaged object, which remains an object in its own right, or a defined Part or Section, which was intentionally created as a component of the object, a fragment is considered a **broken or detached piece**. It is explicitly understood in relation to the larger object — or part — it once formed part of.
+>
+>A heritage fragment may later be studied or repurposed for research, but its initial separation was not driven by intentional examination or analysis — a key distinction from a heritage sample.
+
+
 
 ## Project Goals
 * Develop a standard metadata profile for heritage samples and related entities.
