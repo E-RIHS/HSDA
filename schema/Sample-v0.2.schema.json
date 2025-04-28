@@ -121,25 +121,10 @@
                     "title": "Resource Type",
                     "type": "string",
                     "enum": [
-                        "Paint Sample",
-                        "Pigment Sample",
-                        "Plaster / Mortar Sample",
-                        "Stone Sample",
-                        "Metal Sample",
-                        "Wood Sample",
-                        "Textile Sample",
-                        "Paper / Parchment Sample",
-                        "Ceramic Sample",
-                        "Glass Sample",
-                        "Organic Material Sample",
-                        "Composite Sample",
-                        "Soil / Sediment Sample",
-                        "Water Sample",
-                        "Biological Sample",
-                        "Dust / Particulate Sample",
-                        "Reference Material",
-                        "Other"
-                      ]
+                        "Heritage Sample",
+                        "Heritage Feature-of-Interest",
+                        "Heritage Sample Collection"
+                    ]
                 },
                 "resourceTypeGeneral": {
                     "type": "string",
@@ -147,7 +132,6 @@
                 }
             }
         },
-
         "subjects": {
             "title": "Subjects, Keywords and Classification codes",
             "description": "The free-text subject property contains the 'subject, keyword, classification code, or key phrase describing the resource.' For IGSN IDs, this is the materials that compose the sample. Since materials may be categorized under different schemata, the sub-properties subjectScheme and schemeURI should also be included whenever possible.",
@@ -220,25 +204,284 @@
             "title": "Dates",
             "description": "The date property may be used to log events relevant to the physical object. The date property requires the dateType sub-property, which must be entered from a controlled list. The 'Collected' dateType may be used to record when a sample was collected. At this time, there is no controlled list value for 'Destroyed', which may be pertinent to your material samples metadata. Pending the potential addition of an equivalent value, we advise using a date property with dateType 'Other' and 'Destroyed' in the dateInformation field.",
             "type": "array",
+            "uniqueItems": true,
             "items": {
                 "type": "object",
                 "additionalProperties": false,
+                "required": ["date", "dateType"],
                 "properties": {
                     "date": {
+                        "title": "Date",
                         "type": "string",
                         "format": "date"
                     },
                     "dateType": {
-                        "$ref": "#/definitions/dateType"
+                        "title": "Date Type",
+                        "type": "string",
+                        "enum": [
+                            "Accepted",
+                            "Available",
+                            "Collected",
+                            "Created",
+                            "Submitted",
+                            "Updated",
+                            "Withdrawn",
+                            "Other"
+                        ]
                     },
                     "dateInformation": {
+                        "title": "Date Information",
+                        "type": "string",
+
+                        "$comment": "it might make sense to add 'consumed' and 'destroyed' to the datetime list, and programmatically change it to other when send to datacite"
+                        
+                    }
+                }
+            }
+        },
+        "alternateIdentifiers": {
+            "title": "Alternate Identifiers",
+            "description": "The alternateIdentifier property may be used to enter any other identifiers for the material sample, including local sample identifiers. For alternate identifiers that were assigned by a researcher or within a project, 'local' is the default recommended alternateIdentifierType.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "title": "Alternate Identifier",
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["alternateIdentifier", "alternateIdentifierType"],
+                "properties": {
+                    "alternateIdentifier": {
+                        "type": "string"
+                    },
+                    "alternateIdentifierType": {
                         "type": "string"
                     }
-                },
-                "required": ["date", "dateType"]
-            },
-            "uniqueItems": true
+                }
+            }
         },
+        "relatedIdentifiers": {
+            "title": "Related Identifiers",
+            "description": "Connecting samples to one another, and to research based on them, is a primary goal of the IGSN ID. Such connections are captured through relatedIdentifier properties, which list the globally unique Identifiers assigned to related resources. It is therefore recommended that relatedIdentifier is used to the maximum extent possible and is updated on a regular basis.",
+            "type": "array",
+            "items": {
+                "title": "Related Identifier",
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["relatedIdentifier", "relatedIdentifierType", "relationType"],
+                "properties": {
+                    "relatedIdentifier": {
+                        "title": "Related Identifier",
+                        "type": "string"
+                    },
+                    "relatedIdentifierType": {
+                        "title": "Related Identifier Type",
+                        "type": "string",
+                            "enum": [
+                                "ARK",
+                                "arXiv",
+                                "bibcode",
+                                "DOI",
+                                "EAN13",
+                                "EISSN",
+                                "Handle",
+                                "IGSN",
+                                "ISBN",
+                                "ISSN",
+                                "ISTC",
+                                "LISSN",
+                                "LSID",
+                                "PMID",
+                                "PURL",
+                                "UPC",
+                                "URL",
+                                "URN",
+                                "w3id"
+                            ]
+                    },
+                    "relationType": {
+                        "title": "Relation Type",
+                        "description": "The relatedIdentifier property can be used to make connections that mirror sample hierarchies. Because the parent IGSN ID is a key element in IGSN ID metadata, it is recommended that a child (sub)sample identifies its parent using the relationType 'IsPartOf' or 'IsDerivedFrom'. Vice versa, a parent sample can identify its children using 'HasPart' or 'IsSourceOf'.",
+                        "type": "string",
+                        "enum": [
+                            "IsCitedBy",
+                            "Cites",
+                            "IsCollectedBy",
+                            "Collects",
+                            "IsSupplementTo",
+                            "IsSupplementedBy",
+                            "IsContinuedBy",
+                            "Continues",
+                            "IsDescribedBy",
+                            "Describes",
+                            "HasMetadata",
+                            "IsMetadataFor",
+                            "HasVersion",
+                            "IsVersionOf",
+                            "IsNewVersionOf",
+                            "IsPartOf",
+                            "IsPreviousVersionOf",
+                            "IsPublishedIn",
+                            "HasPart",
+                            "IsReferencedBy",
+                            "References",
+                            "IsDocumentedBy",
+                            "Documents",
+                            "IsCompiledBy",
+                            "Compiles",
+                            "IsVariantFormOf",
+                            "IsOriginalFormOf",
+                            "IsIdenticalTo",
+                            "IsReviewedBy",
+                            "Reviews",
+                            "IsDerivedFrom",
+                            "IsSourceOf",
+                            "IsRequiredBy",
+                            "Requires",
+                            "IsObsoletedBy",
+                            "Obsoletes"
+                        ]
+                    },
+                    "relatedMetadataScheme": {
+                        "title": "Related Metadata Scheme",
+                        "description": "NOTE: Use only with this relation pair: HasMetadata / IsMetadataFor",
+                        "type": "string"
+                    },
+                    "schemeUri": {
+                        "title": "Scheme URI",
+                        "type": "string",
+                        "description": "NOTE: Use only with this relation pair: HasMetadata / IsMetadataFor",
+                        "format": "uri"
+                    },
+                    "schemeType": {
+                        "title": "Scheme Type",
+                        "type": "string",
+                        "description": "NOTE: Use only with this relation pair: HasMetadata / IsMetadataFor"
+                    },
+                    "resourceTypeGeneral": {
+                        "title": "Resource Type General",
+                        "type": "string",
+                        "enum": [
+                            "Audiovisual",
+                            "Book",
+                            "BookChapter",
+                            "Collection",
+                            "ComputationalNotebook",
+                            "ConferencePaper",
+                            "ConferenceProceeding",
+                            "DataPaper",
+                            "Dataset",
+                            "Dissertation",
+                            "Event",
+                            "Image",
+                            "Instrument",
+                            "InteractiveResource",
+                            "Journal",
+                            "JournalArticle",
+                            "Model",
+                            "OutputManagementPlan",
+                            "PeerReview",
+                            "PhysicalObject",
+                            "Preprint",
+                            "Report",
+                            "Service",
+                            "Software",
+                            "Sound",
+                            "Standard",
+                            "StudyRegistration",
+                            "Text",
+                            "Workflow",
+                            "Other"
+                        ]
+                    }
+                }
+            }
+        },
+        "descriptions": {
+            "title": "Descriptions",
+            "description": "It is valuable to include additional information about a sample, particularly about its 'birth', in the free-text description property. If the description property is used, then the sub-property descriptionType is mandatory. Values for the latter are selected from a controlled list, with the most relevant for IGSN IDs being: (1) Abstract: Brief description of the resource and the context in which it was created; (2) Methods: The methodology employed for the study or research. For IGSN IDs, this is the collection method.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["description", "descriptionType"],
+                "properties": {
+                    "description": {
+                        "title": "Description",
+                        "type": "string",
+                        "format": "textarea"
+                    },
+                    "descriptionType": {
+                        "title": "Description Type",
+                        "type": "string",
+                        "enum": [
+                            "Abstract",
+                            "Methods",
+                            "SeriesInformation",
+                            "TableOfContents",
+                            "TechnicalInfo",
+                            "Other"
+                        ]
+                    },
+                    "lang": {"type": "string"}
+                }
+            }
+
+        },
+        "geoLocations": {
+            "title": "Geo Locations",
+            "description": "The geoLocation property is used to encode information on the 'spatial region or named place where the data was gathered or about which the data is focused.' The property can be repeated to indicate a number of different locations, and can express a location as a point, bounding box, or polygon, or simply as a free-text description",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "geoLocationPlace": {
+                        "title": "Geo Location Place",
+                        "type": "string"
+                    },
+                    "geoLocationPoint": {
+                        "$ref": "#/definitions/geoLocationPoint"
+                    },
+                    "geoLocationBox": {
+                        "title": "Geo Location Box",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["westBoundLongitude", "eastBoundLongitude", "southBoundLatitude", "northBoundLatitude"],
+                        "properties": {
+                            "westBoundLongitude": {"$ref": "#/definitions/longitude"},
+                            "eastBoundLongitude": {"$ref": "#/definitions/longitude"},
+                            "southBoundLatitude": {"$ref": "#/definitions/latitude"},
+                            "northBoundLatitude": {"$ref": "#/definitions/latitude"}
+                        }
+                    },
+                    "geoLocationPolygon": {
+                        "title": "Geo Location Polygon",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "polygonPoint": {"$ref": "#/definitions/geoLocationPoint"},
+                                "inPolygonPoint": {"$ref": "#/definitions/geoLocationPoint"}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+
+
+
+
+        
+        "$comment": "The following properties are in the datacite schema, but not in the IGSN recommendations: 9 lang, 13 size, 14 format, 15 version, 16 rights, 19 fundingReference, 20 relatedItem",
+
+
+
+
+        "$comment": "The following properties were in our version 0.1 schema, but need to be analysed",
 
 
         "sample_description": {
@@ -368,6 +611,11 @@
             }
         }
     },
+
+
+
+
+
     "definitions": {
         "affiliation": {
             "type": "array",
@@ -410,21 +658,25 @@
                 "Other"
             ]
         },
-        "dateType": {
-            "type": "string",
-            "enum": [
-                "Accepted",
-                "Available",
-                "Copyrighted",
-                "Collected",
-                "Created",
-                "Issued",
-                "Submitted",
-                "Updated",
-                "Valid",
-                "Withdrawn",
-                "Other"
-            ]
+        "geoLocationPoint": {
+            "title": "Geo Location Point",
+            "type": "object",
+            "additionalProperties": false, 
+            "required": ["pointLongitude", "pointLatitude"],
+            "properties": {
+                "pointLongitude": {"$ref": "#/definitions/longitude"},
+                "pointLatitude": {"$ref": "#/definitions/latitude"}
+            }
+        },
+        "latitude": {
+            "type": "number",
+             "maximum": 90,
+             "minimum": -90
+        },
+        "longitude": {
+            "type": "number",
+             "maximum": 180,
+             "minimum": -180
         },
         "nameIdentifiers": {
             "type": "array",
