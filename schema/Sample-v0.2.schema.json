@@ -233,7 +233,7 @@
                         "title": "Date Information",
                         "type": "string",
 
-                        "$comment": "it might make sense to add 'consumed' and 'destroyed' to the datetime list, and programmatically change it to other when send to datacite"
+                        "$comment": "it might make sense to add 'mounted', 'consumed' and 'destroyed' to the datetime list, and programmatically change it to other when send to datacite"
                         
                     }
                 }
@@ -399,6 +399,7 @@
         "descriptions": {
             "title": "Descriptions",
             "description": "It is valuable to include additional information about a sample, particularly about its 'birth', in the free-text description property. If the description property is used, then the sub-property descriptionType is mandatory. Values for the latter are selected from a controlled list, with the most relevant for IGSN IDs being: (1) Abstract: Brief description of the resource and the context in which it was created; (2) Methods: The methodology employed for the study or research. For IGSN IDs, this is the collection method.",
+            "$comment": "Datacite 17, with custom descriptionTypes",
             "type": "array",
             "uniqueItems": true,
             "items": {
@@ -415,13 +416,13 @@
                         "title": "Description Type",
                         "type": "string",
                         "enum": [
-                            "Abstract",
-                            "Methods",
-                            "SeriesInformation",
-                            "TableOfContents",
-                            "TechnicalInfo",
+                            "Sample description",
+                            "Sample site description",
+                            "Sampling method",
+                            "Reason for sampling",
                             "Other"
-                        ]
+                        ],
+                        "$comment": "Mappings to Datacite: 'Sample description', 'Sample site description' is mapped to 'Abstract', 'Sampling method' is mapped to 'Methods', 'Reason for sampling' translates to 'Other'."
                     },
                     "lang": {"type": "string"}
                 }
@@ -471,35 +472,65 @@
                 }
             }
         },
-
-
-
-
-        
-        "$comment": "The following properties are in the datacite schema, but not in the IGSN recommendations: 9 lang, 13 size, 14 format, 15 version, 16 rights, 19 fundingReference, 20 relatedItem",
-
+        "language": {
+            "title": "Language",
+            "description": "Primary language of this sample description. Allowed values are taken from  IETF BCP 47, ISO 639-1 language codes.",
+            "type": "string"
+        },
+        "sizes": {
+            "description": "The size of the sample. This is a list of sizes in a unit of measure. This can be width, height, depth, diameter, weight, volume, etc. Use SI units as appropriate.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true
+        },
+        "version": {
+            "title": "Version",
+            "description": "The version of the sample description. Suggested practice: track major_version.minor_version.",
+            "type": "string"
+        },
+        "rightsList": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "rights": {"type": "string"},
+                    "rightsUri": {"type": "string", "format": "uri"},
+                    "rightsIdentifier": {"type": "string"},
+                    "rightsIdentifierScheme": {"type": "string"},
+                    "schemeUri": {"type": "string", "format": "uri"},
+                    "lang": {"type": "string"}
+                }
+            },
+            "uniqueItems": true
+        },
+        "fundingReferences": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "funderName": {"type": "string"},
+                    "funderIdentifier": {"type": "string"},
+                    "funderIdentifierType": {"$ref": "#/definitions/funderIdentifierType"},
+                    "awardNumber": {"type": "string"},
+                    "awardUri": {"type": "string", "format": "uri"},
+                    "awardTitle": {"type": "string"}
+                },
+                "required": ["funderName"]
+            },
+            "uniqueItems": true
+        },
 
 
 
         "$comment": "The following properties were in our version 0.1 schema, but need to be analysed",
 
 
-        "sample_description": {
-            "title": "Sample Description",
-            "type": "string",
-            "description": "A description of the sample"
-        },
-        "purpose": {
-            "title": "Purpose",
-            "type": "string",
-            "description": "The purpose of sampling"
-        },
-        "collection_id": {
-            "title": "Collection ID",
-            "type": "string",
-            "description": "The current location of the sample",
-            "format": "uri"
-        },
+
+
         "sample_source": {
             "title": "Sample Source",
             "type": "object",
@@ -547,68 +578,6 @@
                 "type": "string",
                 "enum": ["oil", "tempera", "watercolour", "acrylic", "gouache", "ink", "graphite", "pencil", "charcoal", "pastel", "other"]
             }
-        },
-        "sampling_event_id": {
-            "title": "Sampling Event ID",
-            "type": "string",
-            "description": "The ID of the event of sampling the sample",
-            "format": "uri"
-        },
-        "sample_status": {
-            "title": "Sample Status",
-            "type": "array",
-            "description": "The overall status of the sample, described at a consequtive list of statuses and events in time",
-            "items": {
-                "title": "Sample Status",
-                "description": "The status of the sample at a given time",
-                "type": "object",
-                "required": [
-                    "status",
-                    "date"
-                ],
-                "properties": {
-                    "status": {
-                        "title": "Status",
-                        "description": "The status of the sample at a given time",
-                        "type": "string",
-                        "enum": ["mounted", "unmounted", "polished", "unpolished", "stained", "in solution"]
-                    },
-                    "date": {
-                        "title": "Date",
-                        "description": "The date and time of the sampling event, in ISO 8601 format",
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "date_precision": {
-                        "title": "Date Precision",
-                        "description": "The precision of the date, as defined in https://www.wikidata.org/wiki/Help:Dates",
-                        "type": "string",
-                        "enum": [
-                            "0 - billion years",
-                            "1 - hundred million years", 
-                            "2 - ten million years",
-                            "3 - million years  ",
-                            "4 - hundred thousand years",
-                            "5 - ten thousand years",
-                            "6 - thousand years",
-                            "7 - century",
-                            "8 - decade",
-                            "9 - year",
-                            "10 - month",
-                            "11 - day",
-                            "12 - hour",
-                            "13 - minute",
-                            "14 - second"
-                        ]
-                    },
-                    "event_id": {
-                        "title": "Event ID",
-                        "type": "string",
-                        "description": "The ID of the process, modification or treatment of the sample",
-                        "format": "uri"
-                    }   
-                }
-            }
         }
     },
 
@@ -655,6 +624,16 @@
                 "Sponsor",
                 "Supervisor",
                 "WorkPackageLeader",
+                "Other"
+            ]
+        },
+        "funderIdentifierType": {
+            "type": "string",
+            "enum": [
+                "ISNI",
+                "GRID",
+                "Crossref Funder ID",
+                "ROR",
                 "Other"
             ]
         },
