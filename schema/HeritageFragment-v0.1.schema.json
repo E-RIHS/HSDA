@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://e-rihs.io/HSDA/schema/HeritageFragment-v0.1.schema.json",
+  "title": "Heritage Fragment",
+  "type": "object",
+  "description": "A schema to describe a Heritage Fragment — a detached physical part originally part of a larger heritage object.",
+  "required": ["doi", "creators", "titles", "publisher", "publicationYear", "types"],
+  "properties": {
+    "doi": {
+      "title": "Fragment Identifier",
+      "type": "string",
+      "format": "uri",
+      "pattern": "^10[.][0-9]{4,9}[/][^\s]+$",
+      "description": "A DOI or persistent identifier assigned to the heritage fragment."
+    },
+    "creators": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/creators"
+    },
+    "titles": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/titles"
+    },
+    "publisher": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/publisher"
+    },
+    "publicationYear": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/publicationYear"
+    },
+    "types": {
+      "title": "Resource Types",
+      "type": "object",
+      "properties": {
+        "resourceTypeGeneral": {
+          "type": "string",
+          "const": "PhysicalObject"
+        },
+        "resourceType": {
+          "type": "string",
+          "const": "Heritage Fragment"
+        }
+      },
+      "required": ["resourceType", "resourceTypeGeneral"]
+    },
+    "descriptions": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/descriptions"
+    },
+    "relatedIdentifiers": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/relatedIdentifiers",
+      "description": "Links to the original object from which the fragment was detached (relationType = IsFragmentOf) and any samples taken from it (HasSample)."
+    },
+    "language": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/language"
+    },
+    "dates": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/dates"
+    },
+    "subjects": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/subjects"
+    },
+    "sizes": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/sizes"
+    },
+    "rightsList": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/rightsList"
+    },
+    "geoLocations": {
+      "$ref": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json#/properties/geoLocations"
+    },
+    "damageDescription": {
+      "title": "Damage Description",
+      "type": "string",
+      "description": "Description of how the fragment became detached, if known."
+    },
+    "fragmentStatus": {
+      "title": "Fragment Status",
+      "type": "string",
+      "enum": ["preserved", "partially preserved", "lost", "reconstructed"],
+      "description": "Current physical status of the fragment."
+    }
+  }
+}
