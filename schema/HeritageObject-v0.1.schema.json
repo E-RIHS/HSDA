@@ -1,0 +1,201 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://e-rihs.io/HSDA/schema/HeritageObject-v0.1.schema.json",
+  "title": "Heritage Object",
+  "type": "object",
+  "description": "A schema to describe a Heritage Object — a distinct, identifiable entity of cultural, historical, or scientific significance.",
+  "required": ["doi", "creators", "titles", "publisher", "publicationYear", "types"],
+  "properties": {
+    "doi": {
+      "title": "Object Identifier",
+      "type": "string",
+      "format": "uri",
+      "pattern": "^10[.][0-9]{4,9}[/][^\s]+$",
+      "description": "A DOI or persistent identifier assigned to the heritage object."
+    },
+    "creators": {
+      "title": "Creators",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "nameType": { "type": "string", "enum": ["Personal", "Organizational"] },
+          "givenName": { "type": "string" },
+          "familyName": { "type": "string" },
+          "affiliation": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" }
+              },
+              "required": ["name"]
+            }
+          }
+        },
+        "required": ["name"]
+      },
+      "description": "Main creator(s) of the heritage object (e.g., artist, maker, institution)."
+    },
+    "titles": {
+      "title": "Titles",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "titleType": {
+            "type": "string",
+            "enum": ["AlternativeTitle", "Subtitle", "TranslatedTitle", "Other"]
+          },
+          "lang": { "type": "string" }
+        },
+        "required": ["title"]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Main and alternative titles used to reference the object."
+    },
+    "publisher": {
+      "title": "Publisher",
+      "type": "string",
+      "description": "The institution or entity that makes the object record publicly available."
+    },
+    "publicationYear": {
+      "title": "Publication Year",
+      "type": "string",
+      "pattern": "^[0-9]{4}$",
+      "description": "The year the object metadata record was made publicly available."
+    },
+    "types": {
+      "title": "Resource Types",
+      "type": "object",
+      "properties": {
+        "resourceTypeGeneral": {
+          "type": "string",
+          "const": "PhysicalObject"
+        },
+        "resourceType": {
+          "type": "string",
+          "enum": [
+            "Heritage Object",
+            "Heritage Fragment",
+            "Heritage Object Group"
+          ]
+        }
+      },
+      "required": ["resourceType", "resourceTypeGeneral"]
+    },
+    "descriptions": {
+      "title": "Descriptions",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "descriptionType": {
+            "type": "string",
+            "enum": ["Abstract", "Methods", "Other"]
+          },
+          "lang": { "type": "string" }
+        },
+        "required": ["description", "descriptionType"]
+      },
+      "uniqueItems": true,
+      "description": "Free-text descriptions of the object, including historical context or significance."
+    },
+    "relatedIdentifiers": {
+      "title": "Related Identifiers",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "relatedIdentifier": { "type": "string" },
+          "relatedIdentifierType": {
+            "type": "string",
+            "enum": ["DOI", "IGSN", "URI", "ARK", "Handle"]
+          },
+          "relationType": {
+            "type": "string",
+            "enum": [
+              "IsPartOf", "HasPart", "IsFragmentOf", "HasFragment",
+              "IsSampleOf", "HasSample", "IsVersionOf", "IsReferencedBy"
+            ]
+          }
+        },
+        "required": ["relatedIdentifier", "relatedIdentifierType", "relationType"]
+      },
+      "description": "Connections to samples, fragments, versions, or other objects."
+    },
+    "language": {
+      "title": "Language",
+      "type": "string",
+      "description": "Primary language used in metadata or inscriptions (ISO 639-1)."
+    },
+    "dates": {
+      "title": "Dates",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "dateType": {
+            "type": "string",
+            "enum": ["Created", "Issued", "Available", "Updated", "Other"]
+          },
+          "dateInformation": { "type": "string" }
+        },
+        "required": ["date", "dateType"]
+      },
+      "description": "Relevant dates associated with the object."
+    },
+    "sizes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Object dimensions or scale in preferred units."
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "subject": { "type": "string" },
+          "subjectScheme": { "type": "string" },
+          "schemeUri": { "type": "string", "format": "uri" }
+        },
+        "required": ["subject"]
+      },
+      "description": "Keywords, themes, or classifications relevant to the object."
+    },
+    "rightsList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rights": { "type": "string" },
+          "rightsUri": { "type": "string", "format": "uri" }
+        }
+      },
+      "description": "Licensing or access conditions for the object record."
+    },
+    "geoLocations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "geoLocationPlace": { "type": "string" },
+          "geoLocationPoint": {
+            "type": "object",
+            "properties": {
+              "pointLatitude": { "type": "number", "minimum": -90, "maximum": 90 },
+              "pointLongitude": { "type": "number", "minimum": -180, "maximum": 180 }
+            },
+            "required": ["pointLatitude", "pointLongitude"]
+          }
+        }
+      },
+      "description": "Place or region associated with the object (e.g., origin or discovery site)."
+    }
+  }
+}
