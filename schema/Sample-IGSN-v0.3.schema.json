@@ -134,7 +134,8 @@
             },
             "resourceTypeGeneral":{
                "type":"string",
-               "const":"PhysicalObject"
+               "const":"PhysicalObject",
+               "default":"PhysicalObject"
             }
          }
       },
@@ -628,19 +629,18 @@
                "type":"string",
                "description":"A description of the location of the sample on the source object"
             },
-            "sample_site_annotations":{
+            "sample_site_annotation_url":{
                "title":"Sample Site Annotations",
-               "type":"array",
-               "items":{
-                  "$ref":"#/$defs/sampleSiteAnnotation"
-               }
+               "description":"A URL to document to location of the site relative to an image of the source. It is recommended to use a link to a IIIF manifest, or a PID landing page for further documentation.",
+               "type":"string",
+               "format":"uri"
             }
          }
       },
       "sample_materials":{
          "type":"array",
          "items":{
-            "$ref":"#/$defs/materialEntry"
+            "$ref":"#/definitions/materialEntry"
          }
       }
    },
