@@ -5,6 +5,7 @@
     "type": "object",
     "required": [
         "id",
+        "types",
         "titles",
         "sampleSource",
         "creators",
@@ -24,7 +25,31 @@
             }
         },
         "doi": {
+            "title": "DOI",
             "$comment": "idea to have samples with an id, but without a DOI (yet)??? It might be an issue that this separate doi field cannot be set read-only"
+        },
+        "types": {
+            "title": "Resource types",
+            "type": "object",
+            "description": "The resourceType property may be populated with resource types from external ontologies or shared vocabularies. In the absence of an agreed vocabulary, the use of the terms “material sample” or “‘feature-of-interest” are strongly recommended to at least distinguish between these sampling concepts. A material sample is a specialization of a larger feature-of-interest, which is typically the collection site. For example, in the Geosciences, a feature-of-interest might be a lake, tree, cross-section, transect, or borehole. ",
+            "additionalProperties": false,
+            "required": ["resourceType", "resourceTypeGeneral"],
+            "properties": {
+                "resourceType": {
+                    "title": "Resource Type",
+                    "type": "string",
+                    "enum": [
+                        "Heritage Sample",
+                        "Heritage Feature-of-Interest",
+                        "Heritage Sample Collection"
+                    ]
+                },
+                "resourceTypeGeneral": {
+                    "type": "string",
+                    "const": "PhysicalObject",
+                    "default": "PhysicalObject"
+                }
+            }
         },
         "titles": {
             "title": "Sample titles or labels",
@@ -39,10 +64,16 @@
                         "type": "string"
                     },
                     "titleType": {
-                        "$ref": "#/definitions/titleType"
+                        "type": "string",
+                        "enum": [
+                            "AlternativeTitle",
+                            "Subtitle",
+                            "TranslatedTitle",
+                            "Other"
+                        ]
                     },
                     "lang": {
-                        "type": "string"
+                        "$ref": "https://e-rihs.io/schema/controlled_lists.schema.json#/definitions/operating_language"
                     },
                     "isInstitutionalIdentifier": {
                         "title": "Institutional Identifier",
@@ -71,11 +102,13 @@
                 "sourceLabel": {
                     "title": "Source Label",
                     "type": "string",
+                    "$comment": "TODO: copy from object (or is this redundant?)",
                     "description": "A short label for the source object, for display purposes."
                 },
                 "sourceType": {
                     "title": "Source Type",
                     "type": "string",
+                    "$comment": "TODO: copy from object (or is this redundant?)",
                     "description": "The type of heritage object from which the sample was taken",
                     "enum": ["painting", "sculpture", "book"]
                 },
@@ -91,6 +124,117 @@
                     "format": "uri"
                 }
             }
+        },
+        "otherDescriptions": {
+            "title": "Other Descriptions",
+            "description": "It is valuable to include additional information about a sample, particularly about its 'birth', in the free-text description property. If the description property is used, then the sub-property descriptionType is mandatory. Values for the latter are selected from a controlled list, with the most relevant for IGSN IDs being: (1) Abstract: Brief description of the resource and the context in which it was created; (2) Methods: The methodology employed for the study or research. For IGSN IDs, this is the collection method. A sample description should be included as an item in the 'descriptions' array using descriptionType 'Sample description'.",
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["description", "descriptionType"],
+                "properties": {
+                    "description": {
+                        "title": "Description",
+                        "type": "string",
+                        "format": "textarea"
+                    },
+                    "descriptionType": {
+                        "title": "Description Type",
+                        "type": "string",
+                        "enum": [
+                            "Sample description",
+                            "Sampling method",
+                            "Reason for sampling",
+                            "Other"
+                        ],
+                        "$comment": "The custom descriptionType values used here map to standard DataCite types as follows: 'Sample description' and 'Sample site description' should both be treated as 'Abstract'; 'Sampling method' maps to 'Methods'; and 'Reason for sampling' maps to 'Other'. Note that a 'Sample site description' can be added in the 'sample_source' custom block, so it should not be added in this 'descriptions' array. These mappings should be applied when exporting to systems that expect standard DataCite descriptionType values."
+                    },
+                    "lang": {
+                        "$ref": "https://e-rihs.io/schema/controlled_lists.schema.json#/definitions/operating_language"
+                    }
+                }
+            }
+        },
+        "geoLocations": {
+            "title": "Geo Locations",
+            "description": "For real-world geospatial locations only. Do not use for positions on an object surface — see `sample_source.sample_site_description` and `sample_site_annotations` instead. The geoLocation property is used to encode information on the 'spatial region or named place where the data was gathered or about which the data is focused.' The property can be repeated to indicate a number of different locations, and can express a location as a point, bounding box, or polygon, or simply as a free-text description",
+            "type": "array",
+            "uniqueItems": true,
+            "required": ["geoLocationType"],
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "geoLocationType": {
+                        "title": "Geo Location Type",
+                        "type": "string",
+                        "enum": [
+                            "Location of sampling",
+                            "Location of sample storage",
+                            "Other"
+                        ]
+                    },
+                    "geoLocationPlace": {
+                        "title": "Geo Location Place",
+                        "type": "string"
+                    },
+                    "geoLocationPoint": {
+                        "$ref": "#/$defs/geoLocationPoint"
+                    },
+                    "geoLocationBox": {
+                        "title": "Geo Location Box",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "westBoundLongitude",
+                            "eastBoundLongitude",
+                            "southBoundLatitude",
+                            "northBoundLatitude"
+                        ],
+                        "properties": {
+                            "westBoundLongitude": {
+                                "$ref": "#/$defs/longitude"
+                            },
+                            "eastBoundLongitude": {
+                                "$ref": "#/$defs/longitude"
+                            },
+                            "southBoundLatitude": {
+                                "$ref": "#/$defs/latitude"
+                            },
+                            "northBoundLatitude": {
+                                "$ref": "#/$defs/latitude"
+                            }
+                        }
+                    },
+                    "geoLocationPolygon": {
+                        "title": "Geo Location Polygon",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "polygonPoint": {
+                                    "$ref": "#/$defs/geoLocationPoint"
+                                },
+                                "inPolygonPoint": {
+                                    "$ref": "#/$defs/geoLocationPoint"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "sizes": {
+            "title": "Sizes",
+            "description": "The dimensions of the sample. This is a list of sizes in a unit of measure. This can be width, height, depth, diameter, weight, volume, etc. Use SI units as appropriate.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "uniqueItems": true
         },
         "creators": {
             "title": "Creators",
@@ -190,6 +334,7 @@
                 "required": ["alternateIdentifier", "alternateIdentifierType"],
                 "properties": {
                     "alternateIdentifier": {
+                        "title": "Alternate Identifier",
                         "type": "string"
                     },
                     "alternateIdentifierType": {
@@ -197,40 +342,433 @@
                     }
                 }
             }
-        }
-    },
-
-    "subjects": {
-        "title": "Subjects, Keywords and Classification codes",
-        "description": "The free-text subject property contains the 'subject, keyword, classification code, or key phrase describing the resource.' For IGSN IDs, this is the materials that compose the sample. Since materials may be categorized under different schemata, the sub-properties subjectScheme and schemeURI should also be included whenever possible.",
-        "type": "array",
-        "items": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "subject": {
-                    "type": "string"
+        },
+        "materialTerms": {
+            "title": "Materials Terms",
+            "description": "The material terms related to the sample or its source.",
+            "type": "array",
+            "items": {
+                "$comment": "TODO: maps to controlled list (AAT material terms)",
+                "type": "string"
+            }
+        },
+        "sampleType": {
+            "title": "Sample Type",
+            "description": "The type of sample.",
+            "type": "string",
+            "$comment": "TODO: map to controlled list",
+            "enum": [
+                "Borehole",
+                "Cross section",
+                "Fragment",
+                "Scraping",
+                "Thin section"
+            ]
+        },
+        "subjects": {
+            "title": "Subjects, Keywords and Classification codes",
+            "description": "The free-text subject property contains the 'subject, keyword, classification code, or key phrase describing the resource.' For IGSN IDs, this is the materials that compose the sample. Since materials may be categorized under different schemata, the sub-properties subjectScheme and schemeURI should also be included whenever possible.",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "subject": {
+                        "title": "Subject",
+                        "type": "string"
+                    },
+                    "subjectScheme": {
+                        "title": "Subject Scheme",
+                        "type": "string"
+                    },
+                    "schemeUri": {
+                        "title": "Scheme URI",
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "valueUri": {
+                        "title": "Value URI",
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "classificationCode": {
+                        "title": "Classification Code",
+                        "type": "string"
+                    },
+                    "lang": {
+                        "$ref": "https://e-rihs.io/schema/controlled_lists.schema.json#/definitions/operating_language"
+                    }
                 },
-                "subjectScheme": {
-                    "type": "string"
+                "required": ["subject"]
+            },
+            "uniqueItems": true
+        },
+        "version": {
+            "title": "Version",
+            "description": "The version of the sample description. Suggested practice: track major_version.minor_version.",
+            "type": "string"
+        },
+        "fundingReferences": {
+            "title": "Funding References",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "funderName": {
+                        "title": "Funder Name",
+                        "type": "string"
+                    },
+                    "funderIdentifier": {
+                        "title": "Funder Identifier",
+                        "type": "string"
+                    },
+                    "funderIdentifierType": {
+                        "title": "Funder Identifier Type",
+                        "type": "string",
+                        "enum": ["ISNI", "GRID", "Crossref Funder ID", "ROR", "Other"]
+                    },
+                    "awardNumber": {
+                        "title": "Award Number",
+                        "type": "string"
+                    },
+                    "awardUri": {
+                        "title": "Award URI",
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "awardTitle": {
+                        "title": "Award Title",
+                        "type": "string"
+                    }
                 },
-                "schemeUri": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "valueUri": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "classificationCode": {
-                    "type": "string"
-                },
-                "lang": {
-                    "type": "string"
+                "required": ["funderName"]
+            },
+            "uniqueItems": true
+        },
+        "rightsList": {
+            "title": "Rights List",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "rights": {
+                        "title": "Rights",
+                        "type": "string"
+                    },
+                    "rightsUri": {
+                        "title": "Rights URI",
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "rightsIdentifier": {
+                        "title": "Rights Identifier",
+                        "type": "string"
+                    },
+                    "rightsIdentifierScheme": {
+                        "title": "Rights Identifier Scheme",
+                        "type": "string"
+                    },
+                    "schemeUri": {
+                        "title": "Scheme URI",
+                        "type": "string",
+                        "format": "uri"
+                    },
+                    "lang": {
+                        "$ref": "https://e-rihs.io/schema/controlled_lists.schema.json#/definitions/operating_language"
+                    }
                 }
             },
-            "required": ["subject"]
+            "uniqueItems": true
         },
-        "uniqueItems": true
+        "contributors": {
+            "title": "Contributors",
+            "description": "All institutions and people involved in a sample’s workflow—from collection to archival (or discarding/destruction)—may be captured in the free-text contributor property. If contributor is used, the sub-properties contributorName and contributorType are mandatory. ",
+            "type": "array",
+            "options": {
+                "hidden": true
+            },
+            "items": {
+                "type": "object",
+                "required": ["contributorType", "name"],
+                "properties": {
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "contributorType": {
+                        "title": "Contributor Type",
+                        "type": "string",
+                        "enum": [
+                            "ContactPerson",
+                            "DataCollector",
+                            "DataCurator",
+                            "DataManager",
+                            "Distributor",
+                            "Editor",
+                            "HostingInstitution",
+                            "Producer",
+                            "ProjectLeader",
+                            "ProjectManager",
+                            "ProjectMember",
+                            "RegistrationAgency",
+                            "RegistrationAuthority",
+                            "RelatedPerson",
+                            "Researcher",
+                            "ResearchGroup",
+                            "RightsHolder",
+                            "Sponsor",
+                            "Supervisor",
+                            "WorkPackageLeader",
+                            "Other"
+                        ]
+                    },
+                    "nameType": {
+                        "title": "Name Type",
+                        "type": "string",
+                        "enum": ["Organizational", "Personal"]
+                    },
+                    "givenName": {
+                        "title": "Given Name",
+                        "type": "string"
+                    },
+                    "familyName": {
+                        "title": "Family Name",
+                        "type": "string"
+                    },
+                    "nameIdentifiers": {
+                        "title": "Name Identifiers",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "nameIdentifier": {
+                                    "title": "Name Identifier",
+                                    "type": "string"
+                                },
+                                "nameIdentifierScheme": {
+                                    "title": "Name Identifier Scheme",
+                                    "type": "string"
+                                },
+                                "schemeUri": {
+                                    "title": "Scheme URI",
+                                    "type": "string",
+                                    "format": "uri"
+                                }
+                            },
+                            "required": [
+                                "nameIdentifier",
+                                "nameIdentifierScheme"
+                            ]
+                        },
+                        "uniqueItems": true
+                    },
+                    "affiliation": {
+                        "title": "Affiliation",
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "name": {
+                                    "title": "Name",
+                                    "type": "string"
+                                },
+                                "affiliationIdentifier": {
+                                    "title": "Affiliation Identifier",
+                                    "type": "string"
+                                },
+                                "affiliationIdentifierScheme": {
+                                    "title": "Affiliation Identifier Scheme",
+                                    "type": "string"
+                                },
+                                "schemeUri": {
+                                    "title": "Scheme URI",
+                                    "type": "string",
+                                    "format": "uri"
+                                }
+                            },
+                            "required": ["name"]
+                        },
+                        "uniqueItems": true
+                    },
+                    "lang": {
+                        "$ref": "https://e-rihs.io/schema/controlled_lists.schema.json#/definitions/operating_language"
+                    }
+                }
+            }
+        },
+        "relatedIdentifiers": {
+            "title": "Related Identifiers",
+            "description": "Connecting samples to one another, and to research based on them, is a primary goal of the IGSN ID. Such connections are captured through relatedIdentifier properties, which list the globally unique Identifiers assigned to related resources. It is therefore recommended that relatedIdentifier is used to the maximum extent possible and is updated on a regular basis. Sample collections should be referenced via relationType 'IsPartOf' pointing to the collection's DOI or IGSN.",
+            "type": "array",
+            "options": {
+                "hidden": true
+            },
+            "items": {
+                "title": "Related Identifier",
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "relatedIdentifier",
+                    "relatedIdentifierType",
+                    "relationType"
+                ],
+                "properties": {
+                    "relatedIdentifier": {
+                        "title": "Related Identifier",
+                        "type": "string"
+                    },
+                    "relatedIdentifierType": {
+                        "title": "Related Identifier Type",
+                        "type": "string",
+                        "enum": [
+                            "ARK",
+                            "arXiv",
+                            "bibcode",
+                            "DOI",
+                            "EAN13",
+                            "EISSN",
+                            "Handle",
+                            "IGSN",
+                            "ISBN",
+                            "ISSN",
+                            "ISTC",
+                            "LISSN",
+                            "LSID",
+                            "PMID",
+                            "PURL",
+                            "UPC",
+                            "URL",
+                            "URN",
+                            "w3id"
+                        ]
+                    },
+                    "relationType": {
+                        "title": "Relation Type",
+                        "description": "The relatedIdentifier property can be used to make connections that mirror sample hierarchies. Because the parent IGSN ID is a key element in IGSN ID metadata, it is recommended that a child (sub)sample identifies its parent using the relationType 'IsPartOf' or 'IsDerivedFrom'. Vice versa, a parent sample can identify its children using 'HasPart' or 'IsSourceOf'.",
+                        "type": "string",
+                        "enum": [
+                            "IsCitedBy",
+                            "Cites",
+                            "IsCollectedBy",
+                            "Collects",
+                            "IsSupplementTo",
+                            "IsSupplementedBy",
+                            "IsContinuedBy",
+                            "Continues",
+                            "IsDescribedBy",
+                            "Describes",
+                            "HasMetadata",
+                            "IsMetadataFor",
+                            "HasVersion",
+                            "IsVersionOf",
+                            "IsNewVersionOf",
+                            "IsPartOf",
+                            "IsPreviousVersionOf",
+                            "IsPublishedIn",
+                            "HasPart",
+                            "IsReferencedBy",
+                            "References",
+                            "IsDocumentedBy",
+                            "Documents",
+                            "IsCompiledBy",
+                            "Compiles",
+                            "IsVariantFormOf",
+                            "IsOriginalFormOf",
+                            "IsIdenticalTo",
+                            "IsReviewedBy",
+                            "Reviews",
+                            "IsDerivedFrom",
+                            "IsSourceOf",
+                            "IsRequiredBy",
+                            "Requires",
+                            "IsObsoletedBy",
+                            "Obsoletes"
+                        ]
+                    },
+                    "relatedMetadataScheme": {
+                        "title": "Related Metadata Scheme",
+                        "description": "NOTE: Use only with this relation pair: HasMetadata / IsMetadataFor",
+                        "type": "string"
+                    },
+                    "schemeUri": {
+                        "title": "Scheme URI",
+                        "type": "string",
+                        "description": "NOTE: Use only with this relation pair: HasMetadata / IsMetadataFor",
+                        "format": "uri"
+                    },
+                    "schemeType": {
+                        "title": "Scheme Type",
+                        "type": "string",
+                        "description": "NOTE: Use only with this relation pair: HasMetadata / IsMetadataFor"
+                    },
+                    "resourceTypeGeneral": {
+                        "title": "Resource Type General",
+                        "type": "string",
+                        "enum": [
+                            "Audiovisual",
+                            "Book",
+                            "BookChapter",
+                            "Collection",
+                            "ComputationalNotebook",
+                            "ConferencePaper",
+                            "ConferenceProceeding",
+                            "DataPaper",
+                            "Dataset",
+                            "Dissertation",
+                            "Event",
+                            "Image",
+                            "Instrument",
+                            "InteractiveResource",
+                            "Journal",
+                            "JournalArticle",
+                            "Model",
+                            "OutputManagementPlan",
+                            "PeerReview",
+                            "PhysicalObject",
+                            "Preprint",
+                            "Report",
+                            "Service",
+                            "Software",
+                            "Sound",
+                            "Standard",
+                            "StudyRegistration",
+                            "Text",
+                            "Workflow",
+                            "Other"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "$defs": {
+        "geoLocationPoint": {
+            "title": "Geo Location Point",
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["pointLongitude", "pointLatitude"],
+            "properties": {
+                "pointLongitude": {
+                    "$ref": "#/$defs/longitude"
+                },
+                "pointLatitude": {
+                    "$ref": "#/$defs/latitude"
+                }
+            }
+        },
+        "latitude": {
+            "type": "number",
+            "maximum": 90,
+            "minimum": -90
+        },
+        "longitude": {
+            "type": "number",
+            "maximum": 180,
+            "minimum": -180
+        }
     }
 }
