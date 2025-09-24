@@ -1,0 +1,5 @@
+sphinx
+myst-parser
+sphinx-design
+sphinx-jsonschema
+sphinx-rtd-theme
