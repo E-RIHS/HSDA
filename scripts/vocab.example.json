@@ -1,0 +1,453 @@
+{
+    "http://purl.org/dc/terms/contributor": [
+        {
+            "value": "admin",
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+    ],
+    "http://purl.org/dc/terms/created": [
+        {
+            "value": "2024-03-13",
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#date"
+        }
+    ],
+    "http://purl.org/dc/terms/creator": [
+        {
+            "value": "admin",
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+    ],
+    "http://purl.org/dc/terms/identifier": [
+        {
+            "value": "863",
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#string"
+        }
+    ],
+    "http://purl.org/dc/terms/modified": [
+        {
+            "value": "2024-04-05",
+            "type": "literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#date"
+        }
+    ],
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": [
+        {
+            "value": "http://www.w3.org/2004/02/skos/core#Concept",
+            "type": "uri"
+        }
+    ],
+    "http://www.w3.org/2004/02/skos/core#altLabel": [
+        {
+            "value": "materials (substances)",
+            "type": "literal",
+            "lang": "en"
+        }
+    ],
+    "http://www.w3.org/2004/02/skos/core#broader": [
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-1cgwdd2tgj1m20fv9wkkg0mdd",
+            "type": "uri"
+        }
+    ],
+    "http://www.w3.org/2004/02/skos/core#definition": [
+        {
+            "value": "The matter or substance from which a thing is or may be made; the tangible substance that goes into the makeup of an art work or other physical object. Physical substances, either naturally or synthetically derived, range from specific materials to types of material. Materials may be designated by their properties, or by function or form. Included are raw materials and processed materials.",
+            "type": "literal",
+            "lang": "en"
+        }
+    ],
+    "http://www.w3.org/2004/02/skos/core#inScheme": [
+        {
+            "value": "https://hdl.handle.net/?idt=th1",
+            "type": "uri"
+        }
+    ],
+    "http://www.w3.org/2004/02/skos/core#narrower": [
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-020t3mtxdjwc2dxrctrjkfd75",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-0c6rpctkfqkts8vqjpqg3tpf2",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-0ljd3m3q7r9nc2qw609fpmcj6",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-0wfc897vltv4xx353cmjg10vm",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-16wlkshs0c8j7l9q0mf2h9hw6",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-1d334hkp6r6pc0xht8g8jvqw4",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-1r14n5h2wf1pl7x57qmnktpbl",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-22gjtrcqc9kdnfdnlwqhbrg2f",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-2b91kj7cgxpbsn2thr3h62hht",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-2njgkps9fp3jhmb5nfm5j9j20",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-2qgsls5m0hlvf3h1x05cnt2g0",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-2s523rcs24n7qmn63k2nj2r6p",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-2tq3c1nkkqrbrxbq1plfp0grt",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-30dbd0x39xc9c9gpbfnmkq3dw",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-33542cd24qgvs8gf2skkf6g35",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-3l4kh8trml5dh5sps1t8hgnh4",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-3snkb83nl6mnb38vf9grvl5l6",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-4j38cm6gx6c4l8db2vhk1n1mm",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-4vm2tclmjgh784fppng5x5g48",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-5b844276gq4p684bflt43qjv5",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-5nprcxh6c3mbslmhdwvgtt6w9",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-61pc2hnsfslqd6v5m3997vcg0",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-67283fd6x1jg7nfmqx8qvbvd4",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-68qtq5jlh3l1ccnwfgmx9h8v3",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-692rt1pbwqsr14shv8b1lp3xb",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-6fk8bqp54q09vmv47ghs9bpc3",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-6n4s8kk1vs691f9s5qddqgdm8",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-6rt2vbk572642stx7dhl5b217",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-8g9q49f0knjm6hq5wqmkx3xw9",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-9xcn4nxqlq57r4n5htvjbkrnr",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-b50g3q92xf1qb5g8b5vwjwkr5",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-bm6m9gcqdxd4g9x5xsbbdkhdt",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-bmswjv42x3h8rfwt6nrd97h54",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-bsc9826bk6l4pjpjlm1knwlj1",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-c327mv9gl2wrcr8j4mvn0tww2",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-cb8716n9wb935bqtgjh2n6l48",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-d01867ppdnqp9869hh5fhqg0t",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-d0j7nm1rb93r30xvbgx2wk5x9",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-d9sljtsm9r64896bckscj7gs7",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-dbvb2xmtx31sqht5033nc3hsl",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-f0wjb8qmqwb1kqsnphkxpw20d",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-fdqt91r0pjl8pp1dtlvmjrhbt",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-fks1rftwhc92n7jl0jjl64p2n",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-fwp9h5r4b60lwfpxgj1vqd3xc",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-g4hdjl3fmvn8m11fn53d7scjj",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-g8spq9fk54rx9pv0jbpvt5c97",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-h37ch5k8xfhnwx5tbf4756x8j",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-hlpn4nkpn2c4gx5f2lg1mvb0n",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-hq9g7lxbvgbs03swbpdgkhpq8",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-jf84825lgv5hggml2pmcp9kvp",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-jql4x9x2hbhx9j5g1rx0jbl72",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-k4xp4j5xf0lrfhhhm4q9wrs5w",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-kg09xhlh9q3tb0xv7p6vwlfvt",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-kh1bjdnmxmmcf3cwv04f0v0gf",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-l51dmssmnkh21s8dpkjb2rl4r",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-l6tk0c5vp9t4ls5gg7xl27h22",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-lvbcglkgc0pstn5mbb1nh9nht",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-lxnv894pcv0bfjqg8hrxhx1xc",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-m5kxsq77qjvvgd4l8stxh0pw1",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-m92f9sfh1xlr3v59wqlj243vt",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-mg9sld8tvjv7qvj9n69mt4b1v",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-n4x1g30hs85krjx3gqvjhhwjb",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-n7mvpxchw3439l258q7kh9cr9",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-njpwms7fct2l3wmm7g9f4rq3x",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-nrkk1nhxf499xwv2ck5gcvfs5",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-p248nn3ktncj3xdncgx9fshls",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-p5pncw779vhwcf94x417h617g",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-p64b6nrgtr1xrvw3ml8k3rfj6",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-ph9cj1dcnvh1bkqj6kglgjl8j",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-pq6vh5t2gltfwgl3gkrk46q0k",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-q78x5jn09n0jb2c42c4krlx2d",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-qjrrvdpv4xl6g7qrqlgtl0h8k",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-qt3cln25njndfrvtx7jbqm81r",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-r24c3crj2sngpkv0gw5k84wb0",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-r46xggl79grt9s6b1frx28828",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-rtq6b1x5fmj6t51tlgb6t1xh8",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-rvtdc07r97qw00jtl8p1lkcwm",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-s2n0n3811cf2vxrqhd40tjlw6",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-s9wqhkhp0nb3cm3hck2vf89lx",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-sv6121m94vt2v227p13d0pjt8",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-tlsvhc8lnfgt8701q9srrsnnn",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-tnqgdnpdfnx76bgqm0rx2cwkw",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-tq3n4qjppv63km651d5wcgrfq",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-vrl90bn7lp3tsmvfl2w4rs49g",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-vvlr9k40p7m2rg156bl2ts239",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-w8d1svkmhdbv9x6xlj20l3n50",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-wcgx7g8csd2wbv6rv8q36j450",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-wk975qkfgmpt1qbqlxbmtrswr",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-wrb62mg514rg2qwc3ptl55jb0",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-ws904j2dq4w99spjx77v5j7gx",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-xb8kwcp9x434g2f76m82h9400",
+            "type": "uri"
+        },
+        {
+            "value": "https://hdl.handle.net/21.11158/0001-xnv8p36xm7vljp48p2ngwsxvw",
+            "type": "uri"
+        }
+    ],
+    "http://www.w3.org/2004/02/skos/core#note": [
+        {
+            "value": "<span style=\"background-color: rgb(250, 248, 250); color: rgb(20, 58, 30);\">The bulk of the terms linked below this term have been pulled from the AAT (March 2024) - the related AAT urls are all linked as an \"exactMatch\". However, as required, new terms may be added in the future.</span>",
+            "type": "literal",
+            "lang": "en"
+        }
+    ],
+    "http://www.w3.org/2004/02/skos/core#prefLabel": [
+        {
+            "value": "material",
+            "type": "literal",
+            "lang": "en"
+        }
+    ]
+}
