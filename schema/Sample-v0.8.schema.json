@@ -28,7 +28,12 @@
             "title": "DOI",
             "type": "string",
             "format": "uri",
-            "$comment": "idea to have samples with an id, but without a DOI (yet)??? It might be an issue that this separate doi field cannot be set read-only"
+            "$comment": "idea to have samples with an id, but without a DOI (yet)??? It might be an issue that this separate doi field cannot be set read-only",
+            "cordra": {
+                "preview": {
+                    "showInPreview": true
+                }
+            }
         },
         "types": {
             "title": "Resource types",
@@ -68,7 +73,12 @@
                 "additionalProperties": false,
                 "properties": {
                     "title": {
-                        "type": "string"
+                        "type": "string",
+                        "cordra": {
+                            "preview": {
+                                "showInPreview": true
+                            }
+                        }
                     },
                     "titleType": {
                         "type": "string",
@@ -116,14 +126,24 @@
                     "title": "Source Label",
                     "type": "string",
                     "$comment": "TODO: copy from object (or is this redundant?)",
-                    "description": "A short label for the source object, for display purposes."
+                    "description": "A short label for the source object, for display purposes.",
+                    "cordra": {
+                        "preview": {
+                            "showInPreview": true
+                        }
+                    }
                 },
                 "sourceType": {
                     "title": "Source Type",
                     "type": "string",
                     "$comment": "TODO: copy from object (or is this redundant?)",
                     "description": "The type of heritage object from which the sample was taken",
-                    "enum": ["painting", "sculpture", "book"]
+                    "enum": ["painting", "sculpture", "book"],
+                    "cordra": {
+                        "preview": {
+                            "showInPreview": true
+                        }
+                    }
                 },
                 "sampleSiteDescription": {
                     "title": "Sample Site Description",
@@ -318,17 +338,13 @@
                     "title": "Relation Type",
                     "description": "The relatedIdentifier property can be used to make connections that mirror sample hierarchies. Because the parent IGSN ID is a key element in IGSN ID metadata, it is recommended that a child (sub)sample identifies its parent using the relationType 'IsPartOf' or 'IsDerivedFrom'. Vice versa, a parent sample can identify its children using 'HasPart' or 'IsSourceOf'.",
                     "type": "string",
-                    "enum": [
-                        "IsDocumentedBy"
-                    ],
+                    "enum": ["IsDocumentedBy"],
                     "default": "IsDocumentedBy"
                 },
                 "resourceTypeGeneral": {
                     "title": "Resource Type General",
                     "type": "string",
-                    "enum": [
-                        "Other"
-                    ],
+                    "enum": ["Other"],
                     "default": "Other"
                 }
             }
@@ -444,7 +460,13 @@
                     "funderIdentifierType": {
                         "title": "Funder Identifier Type",
                         "type": "string",
-                        "enum": ["ISNI", "GRID", "Crossref Funder ID", "ROR", "Other"]
+                        "enum": [
+                            "ISNI",
+                            "GRID",
+                            "Crossref Funder ID",
+                            "ROR",
+                            "Other"
+                        ]
                     },
                     "awardNumber": {
                         "title": "Award Number",
@@ -650,6 +672,12 @@
             "type": "string",
             "options": {
                 "hidden": true
+            },
+            "cordra": {
+                "preview": {
+                    "showInPreview": true,
+                    "isPrimary": true
+                }
             }
         },
         "_custodianNames": {
@@ -657,7 +685,12 @@
             "description": "Automatically generated list of custodian names based on the titles array.",
             "type": "array",
             "items": {
-                "type": "string"
+                "type": "string",
+                "cordra": {
+                    "preview": {
+                        "showInPreview": true
+                    }
+                }
             }
         }
     },
@@ -715,10 +748,7 @@
         "point": {
             "title": "GeoJSON Point",
             "type": "object",
-            "required": [
-                "type",
-                "coordinates"
-            ],
+            "required": ["type", "coordinates"],
             "properties": {
                 "type": {
                     "const": "Point"
@@ -735,10 +765,7 @@
         "multiPoint": {
             "title": "GeoJSON MultiPoint",
             "type": "object",
-            "required": [
-                "type",
-                "coordinates"
-            ],
+            "required": ["type", "coordinates"],
             "properties": {
                 "type": {
                     "const": "MultiPoint"
@@ -758,10 +785,7 @@
         "lineString": {
             "title": "GeoJSON LineString",
             "type": "object",
-            "required": [
-                "type",
-                "coordinates"
-            ],
+            "required": ["type", "coordinates"],
             "properties": {
                 "type": {
                     "const": "LineString"
@@ -778,10 +802,7 @@
         "multiLineString": {
             "title": "GeoJSON MultiLineString",
             "type": "object",
-            "required": [
-                "type",
-                "coordinates"
-            ],
+            "required": ["type", "coordinates"],
             "properties": {
                 "type": {
                     "const": "MultiLineString"
@@ -801,10 +822,7 @@
         "polygon": {
             "title": "GeoJSON Polygon",
             "type": "object",
-            "required": [
-                "type",
-                "coordinates"
-            ],
+            "required": ["type", "coordinates"],
             "properties": {
                 "type": {
                     "const": "Polygon"
@@ -821,10 +839,7 @@
         "multiPolygon": {
             "title": "GeoJSON MultiPolygon",
             "type": "object",
-            "required": [
-                "type",
-                "coordinates"
-            ],
+            "required": ["type", "coordinates"],
             "properties": {
                 "type": {
                     "const": "MultiPolygon"
@@ -844,10 +859,7 @@
         "geometryCollection": {
             "title": "GeoJSON GeometryCollection",
             "type": "object",
-            "required": [
-                "type",
-                "geometries"
-            ],
+            "required": ["type", "geometries"],
             "properties": {
                 "type": {
                     "const": "GeometryCollection"
