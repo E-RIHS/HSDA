@@ -13,7 +13,7 @@ The repository serves as a foundation for the creation of an open Heritage Sampl
 >* The date and location from which it was taken.
 >* Ideally, precise positional information regarding its original placement within the object.
 >
->While heritage samples are typically removed as part of a deliberate sampling event, it is also recognized that samples may become detached through natural processes, accidents, or external forces. In such cases, a detailed record of the event leading to the separation or deliberate selection of the sample is required, along with a high level of confidence that the sample was originally part of the object or thing it is suposed to represent.
+>While heritage samples are typically removed as part of a deliberate sampling event, it is also recognised that samples may become detached through natural processes, accidents, or external forces. In such cases, a detailed record of the event leading to the separation or deliberate selection of the sample is required, along with a high level of confidence that the sample was originally part of the object or thing it is supposed to represent.
 >
 >To be classified as a heritage sample rather than a generic component or fragment, it must have been collected, retained, or used specifically for examination or analysis. A sample may serve multiple research purposes and contribute to answering a range of scientific or historical questions.
 >
